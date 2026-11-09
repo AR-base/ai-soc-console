@@ -231,15 +231,30 @@ ul.clean li { display: flex; gap: 8px; align-items: baseline; }
 .kpi b { font-family: var(--f-display); font-size: 30px; font-weight: 700; line-height: 1.05; font-variant-numeric: tabular-nums; }
 .kpi .hint { font-size: 12.5px; }
 .kpi-good { --kc: var(--ok); } .kpi-warn { --kc: var(--warn); } .kpi-bad { --kc: var(--bad); } .kpi-none { --kc: var(--line); }
-.tl { display: grid; gap: 8px; }
-.tl-track { position: relative; height: 92px; border-bottom: 2px solid var(--ink-3); margin: 0 4px; }
-.tl-pt { position: absolute; bottom: -7px; display: grid; justify-items: center; gap: 4px; transform: translateX(-50%); }
-.tl-pt.left { justify-items: start; transform: translateX(-6px); }
-.tl-pt.right { justify-items: end; transform: translateX(calc(-100% + 6px)); }
-.tl-pt .tl-lab { order: -1; font-size: 12.5px; line-height: 1.3; white-space: nowrap; text-align: inherit; }
-.tl-pt.left .tl-lab { text-align: left; } .tl-pt.right .tl-lab { text-align: right; }
-.tl-pt .tl-lab b { font-family: var(--f-mono); font-size: 12px; }
-.tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--sevc); box-shadow: 0 0 0 3px var(--surface); }
+.tl { display: grid; gap: 10px; }
+/* Sequence layout: events in time order, evenly spaced, with the real gap written on each connector. */
+.tl-seq { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 2px; }
+.tl-node { flex: 1 1 0; min-width: 150px; display: grid; gap: 4px; align-content: start; }
+.tl-rail { display: flex; align-items: center; gap: 0; height: 16px; }
+.tl-rail .line { flex: 1; height: 2px; background: var(--line); }
+.tl-rail .line.on { background: var(--ink-3); }
+.tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--sevc); box-shadow: 0 0 0 3px var(--surface); flex: 0 0 auto; }
+.tl-gap { font-family: var(--f-mono); font-size: 11px; color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 0 6px; margin: 0 4px; white-space: nowrap; }
+.tl-card { padding-right: 10px; }
+.tl-card b { font-family: var(--f-mono); font-size: 12.5px; }
+.tl-card .t { font-family: var(--f-mono); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.tl-card .d { font-size: 13px; }
+.tl-card .a { font-size: 12px; color: var(--ink-3); }
+.tl-card .g { display: none; font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-2); }
+@media (max-width: 560px) {
+  .tl-seq { flex-direction: column; overflow: visible; gap: 0; }
+  .tl-node { min-width: 0; grid-template-columns: 16px minmax(0, 1fr); column-gap: 12px; }
+  .tl-rail { flex-direction: column; height: auto; width: 16px; align-items: center; padding-top: 3px; }
+  .tl-rail .line { width: 2px; height: auto; flex: 1; min-height: 14px; }
+  .tl-rail .tl-gap, .tl-rail .line + .tl-gap + .line { display: none; }
+  .tl-card { padding: 0 0 12px; }
+  .tl-card .g { display: block; }
+}
 .board { display: grid; gap: 12px; }
 .inc { border: 1px solid var(--line); border-left: 6px solid var(--sevc, var(--line)); border-radius: var(--r); padding: 14px 16px; display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr) minmax(0, 260px); gap: 16px; background: var(--surface); }
 .inc .inc-title { margin: 0; font-family: var(--f-display); font-size: 18px; font-weight: 600; }
@@ -2913,21 +2928,35 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       if (!r.alert) return;
       var kf = Core.keyFields(r.alert);
       var t = Core.parseTime(kf.eventTime) || Core.parseTime(kf.time);
-      if (t != null) pts.push({ i: i, t: t });
+      if (t != null) pts.push({ i: i, t: t, alertT: Core.parseTime(kf.time), lag: Core.detectSeconds(r.alert) });
     });
     if (!pts.length) return null;
-    var min = Math.min.apply(null, pts.map(function (p) { return p.t; }));
-    var max = Math.max.apply(null, pts.map(function (p) { return p.t; }));
-    var span = Math.max(max - min, 60000);
-    var track = h('div', { class: 'tl-track', role: 'img', 'aria-label': 'Attack timeline' });
-    pts.forEach(function (p) {
-      var x = 3 + 94 * (p.t - min) / span;
-      var sev = sevOf(p.i, D) || 'Low';
-      track.append(h('div', { class: 'tl-pt' + (x < 25 ? ' left' : x > 75 ? ' right' : ''), style: 'left:' + x.toFixed(2) + '%;--sevc:var(--sev-' + sev.toLowerCase() + ')' },
-        h('span', { class: 'tl-lab' }, h('b', { text: state.incidents[p.i].id }), ' ' + utc(p.t), h('br'), state.incidents[p.i].scenario + ' · ' + sev),
-        h('span', { class: 'tl-dot' })));
+    pts.sort(function (a, b) { return a.t - b.t || a.i - b.i; });
+    var span = (pts[pts.length - 1].t - pts[0].t) / 1000;
+    function gapText(ms) {
+      var sec = ms / 1000;
+      return sec < 1 ? '+<1 s' : '+' + Core.fmtDuration(sec);
+    }
+    var seq = h('div', { class: 'tl-seq', role: 'list', 'aria-label': 'Incidents in time order' });
+    pts.forEach(function (p, n) {
+      var inc = state.incidents[p.i], sev = sevOf(p.i, D) || 'Low';
+      var next = pts[n + 1];
+      var rail = h('div', { class: 'tl-rail', 'aria-hidden': 'true' },
+        h('span', { class: 'tl-dot' }),
+        h('span', { class: 'line' + (next ? ' on' : ''), style: next ? '' : 'visibility:hidden' }),
+        next ? h('span', { class: 'tl-gap', text: gapText(next.t - p.t) }) : null,
+        next ? h('span', { class: 'line on' }) : null);
+      seq.append(h('div', { class: 'tl-node', role: 'listitem', style: '--sevc:var(--sev-' + sev.toLowerCase() + ')' },
+        rail,
+        h('div', { class: 'tl-card' },
+          h('div', null, h('b', { text: inc.id }), ' ', h('span', { class: 't', text: utc(p.t) })),
+          h('div', { class: 'd' }, inc.scenario + ' · ', sevPill(sev)),
+          n ? h('div', { class: 'g', text: gapText(p.t - pts[n - 1].t) + ' after ' + state.incidents[pts[n - 1].i].id }) : null,
+          p.lag != null ? h('div', { class: 'a', text: 'Wazuh alert ' + utc(p.alertT) + ' (+' + Core.fmtDuration(p.lag) + ')' }) : null)));
     });
-    return h('div', { class: 'tl' }, h('div', { class: 'eyebrow', text: 'Attack timeline · Windows event time, UTC · ' + Core.fmtDuration((max - min) / 1000) + ' from first to last' }), track);
+    return h('div', { class: 'tl' },
+      h('div', { class: 'eyebrow', text: 'Attack timeline · Windows event time, UTC · ' + (span < 1 ? 'all in the same second' : Core.fmtDuration(span) + ' from first to last') + ' · spaced by order, real gaps on the line' }),
+      seq);
   }
 
   function boardPanel(rows, D) {
