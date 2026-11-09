@@ -1,0 +1,8 @@
+{
+  "name": "ai-soc-console",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered SOC console: redacted AI analysis verified against Wazuh alerts",
+  "scripts": { "build": "python3 build.py", "test": "node --test tests/core.test.js" },
+  "license": "MIT"
+}
