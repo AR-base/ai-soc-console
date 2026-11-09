@@ -655,6 +655,43 @@
     };
   }
 
+  /* ---------- direct AI (public website, bring-your-own key) ---------- */
+
+  var MODELS = [
+    { id: 'claude-sonnet-5-5', label: 'Claude Sonnet 5.5 · balanced' },
+    { id: 'claude-haiku-5-5', label: 'Claude Haiku 5.5 · fastest, cheapest' },
+    { id: 'claude-opus-5-5', label: 'Claude Opus 5.5 · most thorough' }
+  ];
+  function anthropicRequest(prompt, model) {
+    var ok = MODELS.some(function (m) { return m.id === model; });
+    return {
+      url: 'https://api.anthropic.com/v1/messages',
+      body: { model: ok ? model : MODELS[0].id, max_tokens: 4000, messages: [{ role: 'user', content: String(prompt).slice(0, MAX_RAW) }] }
+    };
+  }
+  // Joins the text blocks of a Messages API reply.
+  function anthropicText(json) {
+    if (!json || !Array.isArray(json.content)) throw new Error('no_content');
+    var t = json.content.filter(function (b) { return b && b.type === 'text' && typeof b.text === 'string'; }).map(function (b) { return b.text; }).join('');
+    if (!t.trim()) throw new Error('no_content');
+    return t;
+  }
+  // Plain-language message for an API failure (status 0 = network/CORS).
+  function apiErrorMessage(status, body) {
+    var msg = body && body.error && typeof body.error.message === 'string' ? body.error.message : '';
+    if (!status) return 'Could not reach the Anthropic API. Check your internet connection and try again.';
+    if (status === 401) return 'That API key was rejected. Check it at console.anthropic.com, then paste it again.';
+    if (status === 403) return 'This API key is not allowed to use that model. Pick another model or check your key’s permissions.';
+    if (status === 404) return 'That model is not available for this key. Pick another model.';
+    if (status === 400 && /credit/i.test(msg)) return 'Your API account has no credit left. Add credit at console.anthropic.com, or use “Copy & open Claude”.';
+    if (status === 400) return 'The API refused the request' + (msg ? ': ' + msg.slice(0, 160) : '.');
+    if (status === 413) return 'The prompt is too large. Turn off the context from other incidents and retry.';
+    if (status === 429) return 'Too many requests for this key right now. Wait a minute, then try again.';
+    if (status >= 500) return 'The AI service is busy. Try again in a minute.';
+    return 'The request failed (HTTP ' + status + ').';
+  }
+  function looksLikeKey(k) { return /^sk-ant-[A-Za-z0-9_-]{20,}$/.test(String(k || '').trim()); }
+
   var api = {
     MAX_RAW: MAX_RAW, SEVERITIES: SEVERITIES, PRIORITIES: PRIORITIES,
     parseAlert: parseAlert, getPath: getPath, keyFields: keyFields,
@@ -665,7 +702,8 @@
     parseTime: parseTime, detectSeconds: detectSeconds, fmtDuration: fmtDuration, explainAlert: explainAlert,
     detokenize: detokenize, computeKpis: computeKpis, briefing: briefing, team2Markdown: team2Markdown,
     DECISIONS: DECISIONS, emptyReview: emptyReview, emptyT2: emptyT2, emptyT4: emptyT4,
-    initialCase: initialCase, normalizeIncident: normalizeIncident, normalizeConfig: normalizeConfig
+    initialCase: initialCase, normalizeIncident: normalizeIncident, normalizeConfig: normalizeConfig,
+    MODELS: MODELS, anthropicRequest: anthropicRequest, anthropicText: anthropicText, apiErrorMessage: apiErrorMessage, looksLikeKey: looksLikeKey
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Core = api;

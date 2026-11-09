@@ -121,6 +121,8 @@ textarea:focus, input:focus, select:focus { border-color: var(--accent); }
 .btn.primary:hover { filter: brightness(1.08); }
 .btn.dark { background: var(--bar); color: var(--on-bar); border-color: var(--bar); }
 .btn:disabled { opacity: .5; cursor: not-allowed; }
+a.btn { text-decoration: none; color: inherit; }
+a.btn.primary { color: var(--on-accent); }
 .btn.small { padding: 4px 10px; font-size: 13px; }
 
 .kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; margin: 0; font-size: 14px; }
@@ -548,6 +550,33 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   var ctl = null;
   var sampleFn = null, downloads = null;
 
+  // Direct AI with the visitor's own Anthropic key: offered only outside the Claude viewer.
+  // The key lives in memory; with consent, in sessionStorage for this tab only. It is sent to api.anthropic.com and nowhere else (CSP).
+  var IN_CLAUDE = !!(window.claude && typeof window.claude.use === 'function');
+  var byok = { key: '', model: Core.MODELS[0].id, remember: false };
+  try {
+    var bk = JSON.parse(sessionStorage.getItem('soc-ai-key') || 'null');
+    if (bk && Core.looksLikeKey(bk.key)) {
+      byok.key = bk.key; byok.remember = true;
+      if (Core.MODELS.some(function (m) { return m.id === bk.model; })) byok.model = bk.model;
+    }
+  } catch (e) { /* storage unavailable */ }
+  function saveKey() {
+    try {
+      if (byok.remember && byok.key) sessionStorage.setItem('soc-ai-key', JSON.stringify({ key: byok.key, model: byok.model }));
+      else sessionStorage.removeItem('soc-ai-key');
+    } catch (e) { /* storage unavailable */ }
+  }
+  function modelLabel() {
+    var m = Core.MODELS.filter(function (x) { return x.id === byok.model; })[0];
+    return m ? m.label.split(' · ')[0] : byok.model;
+  }
+  function aiMode() {
+    if (sampleFn && !ui.sampleOff) return 'claude';
+    if (!IN_CLAUDE && byok.key) return 'key';
+    return null;
+  }
+
   function derive() {
     var parsed = state.incidents.map(function (inc) { return Core.parseAlert(inc.raw); });
     var alerts = parsed.map(function (p) { return p.ok ? p.alert : null; });
@@ -918,7 +947,10 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   var SAMPLE_OFF = ['not_granted', 'sampling_disabled', 'not_declared', 'capability_disabled', 'capability_removed'];
 
   function runClaude(i, D) {
-    if (!sampleFn || ui.running !== null) return;
+    if (ui.running !== null) return;
+    var mode = aiMode();
+    if (!mode) return;
+    if (mode === 'key') { runWithKey(i, D); return; }
     var prompt = promptFor(i, D);
     ctl = new AbortController();
     ui.running = i; ui.lastRun = i; ui.status = 'Thinking… this usually takes 20–60 seconds.'; ui.statusKind = 'info';
@@ -943,6 +975,62 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       }
     }).then(function () { ui.running = null; ctl = null; render(); });
   }
+  function runWithKey(i, D) {
+    var req = Core.anthropicRequest(promptFor(i, D), byok.model);
+    ctl = new AbortController();
+    ui.running = i; ui.lastRun = i; ui.status = 'Thinking with ' + modelLabel() + '… this usually takes 20–60 seconds.'; ui.statusKind = 'info';
+    render();
+    fetch(req.url, {
+      method: 'POST', signal: ctl.signal, body: JSON.stringify(req.body),
+      headers: { 'content-type': 'application/json', 'x-api-key': byok.key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }
+    }).then(function (res) {
+      return res.json().catch(function () { return null; }).then(function (body) {
+        if (!res.ok) throw { status: res.status, body: body };
+        return body;
+      });
+    }).then(function (body) {
+      var text = Core.anthropicText(body);
+      try {
+        setAnalysis(i, Core.sanitizeAnalysis(Core.extractJson(text)), 'claude');
+        ui.status = 'Analysis received from ' + modelLabel() + '. Now verify each claim against the log.'; ui.statusKind = 'ok';
+      } catch (e) {
+        ui.paste = text.slice(0, 20000);
+        ui.status = 'The answer wasn’t valid JSON. It is in the box below so you can fix it, or run again.'; ui.statusKind = 'bad';
+      }
+    }).catch(function (e) {
+      if (e && e.name === 'AbortError') { ui.status = 'Stopped.'; ui.statusKind = 'info'; return; }
+      if (e instanceof Error && e.message === 'no_content') { ui.status = 'The AI returned an empty answer. Run again.'; ui.statusKind = 'bad'; return; }
+      var status = e && typeof e.status === 'number' ? e.status : 0;
+      ui.status = Core.apiErrorMessage(status, e && e.body); ui.statusKind = 'bad';
+      if (status === 401) { byok.key = ''; saveKey(); }
+    }).then(function () { ui.running = null; ctl = null; render(); });
+  }
+  function connectBox() {
+    var key = h('input', { type: 'password', id: 'ai-key', autocomplete: 'off', spellcheck: 'false', 'aria-label': 'Anthropic API key',
+      placeholder: byok.key ? 'Connected · paste a new key to replace it' : 'sk-ant-…' });
+    var model = h('select', { id: 'ai-model', onchange: function () { byok.model = model.value; saveKey(); } },
+      Core.MODELS.map(function (m) { var o = h('option', { value: m.id, text: m.label }); if (m.id === byok.model) o.selected = true; return o; }));
+    var rem = h('input', { type: 'checkbox', id: 'ai-remember', checked: byok.remember, onchange: function (e) { byok.remember = e.target.checked; saveKey(); } });
+    var msg = h('div', { id: 'ai-key-msg', class: byok.key ? 'msg ok' : 'hint', text: byok.key ? 'Connected. The key is used only from this browser tab.' : 'Not connected yet.' });
+    return h('details', { class: 'box', open: byok.key ? null : true },
+      h('summary', { text: byok.key ? 'AI connected · ' + modelLabel() : 'Connect an AI to run the analysis on this page' }),
+      h('div', { class: 'stack' },
+        h('p', { class: 'hint', text: 'Paste an Anthropic API key (console.anthropic.com → API keys). It goes only to api.anthropic.com, is never saved in this site’s code, and is forgotten when you close the tab unless you tick the box. API use is billed to your API account, separately from a Claude subscription.' }),
+        h('div', null, h('label', { class: 'lbl', for: 'ai-key', text: 'API key' }), key),
+        h('div', null, h('label', { class: 'lbl', for: 'ai-model', text: 'Model' }), model),
+        h('label', { class: 'row', style: 'gap:8px', for: 'ai-remember' }, rem, 'Keep the key until I close this tab'),
+        h('div', { class: 'row' },
+          h('button', { class: 'btn primary', text: byok.key ? 'Replace key' : 'Connect', onclick: function () {
+            var v = key.value.trim();
+            if (!Core.looksLikeKey(v)) { msg.textContent = 'That doesn’t look like an Anthropic API key. It starts with sk-ant-.'; msg.className = 'msg bad'; return; }
+            byok.key = v; key.value = ''; saveKey(); toast('AI connected'); render();
+          } }),
+          byok.key ? h('button', { class: 'btn', text: 'Forget key', onclick: function () { byok.key = ''; saveKey(); toast('Key forgotten'); render(); } }) : null),
+        msg));
+  }
+  function openChat(url, prompt) {
+    return function () { copyText(prompt, 'Prompt'); };   // the link itself opens the chat in a new tab
+  }
   function setStatus(text, kind) {
     ui.status = text; ui.statusKind = kind;
     var el = document.getElementById('ai-status');
@@ -954,15 +1042,21 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     if (!D.parsed[i].ok) { panel.append(h('div', { class: 'msg bad', text: 'Add a valid alert in Intake first.' })); return; }
     var prompt = promptFor(i, D);
     var running = ui.running === i;
-    var canClaude = !!sampleFn && !ui.sampleOff;
+    var mode = aiMode();
+    var canClaude = !!mode;
+    var runLabel = mode === 'key' ? modelLabel() : 'Claude';
 
     var actions = h('div', { class: 'row' });
     if (canClaude) {
-      actions.append(h('button', { class: 'btn primary', text: running ? 'Running…' : (inc.analysis && inc.analysisSource !== 'example' ? 'Run again with Claude' : 'Run with Claude'),
+      actions.append(h('button', { class: 'btn primary', text: running ? 'Running…' : (inc.analysis && inc.analysisSource !== 'example' ? 'Run again with ' + runLabel : 'Run with ' + runLabel),
         disabled: ui.running !== null ? true : null, onclick: function () { runClaude(i, D); } }));
       if (running) actions.append(h('button', { class: 'btn', text: 'Stop', onclick: function () { if (ctl) ctl.abort(); } }));
     }
     actions.append(h('button', { class: 'btn', text: 'Copy prompt', onclick: function () { copyText(prompt, 'Prompt'); } }));
+    if (!sampleFn) {
+      actions.append(h('a', { class: 'btn', href: 'https://claude.ai/new', target: '_blank', rel: 'noopener noreferrer', text: 'Copy & open Claude ↗', onclick: openChat('https://claude.ai/new', prompt) }));
+      actions.append(h('a', { class: 'btn', href: 'https://chatgpt.com/', target: '_blank', rel: 'noopener noreferrer', text: 'Copy & open ChatGPT ↗', onclick: openChat('https://chatgpt.com/', prompt) }));
+    }
 
     var pasteTa = h('textarea', { id: 'paste-' + inc.id, class: 'code', style: 'min-height:160px', value: ui.paste, placeholder: 'Paste the AI’s JSON answer here.',
       oninput: function () { ui.paste = pasteTa.value; } });
@@ -970,8 +1064,8 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       h('summary', { text: canClaude ? 'Or use another AI tool' : 'Use any AI tool' }),
       h('div', null,
         h('ol', { class: 'steps-list' },
-          h('li', { text: 'Copy the prompt above. It contains only redacted values.' }),
-          h('li', { text: 'Paste it into the AI tool your team uses and send it.' }),
+          h('li', { text: 'Click “Copy & open Claude” (or Copy prompt). The prompt contains only redacted values.' }),
+          h('li', { text: 'In the new chat, paste with Ctrl+V and send it.' }),
           h('li', { text: 'Paste the JSON answer below and choose Use this answer.' })),
         pasteTa,
         ui.pasteError ? h('div', { class: 'msg bad', role: 'alert', text: ui.pasteError }) : null,
@@ -995,6 +1089,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       inc.redactionChecked ? null : h('div', { class: 'msg warn', text: 'Redaction for this incident isn’t marked as checked yet. Review step 2 before sending anything.' }),
       h('div', { class: 'split' },
         h('div', { class: 'stack' },
+          !IN_CLAUDE ? connectBox() : null,
           h('div', { class: 'eyebrow', text: 'Prompt (redacted) — this is the evidence of the AI prompt used' }),
           (function () { var pre = tokenized(prompt, 'pre'); pre.className = 'json wrap-lines'; pre.style.maxHeight = '380px'; return pre; })(),
           ctxBox, actions,
@@ -1587,7 +1682,8 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     if (!red) { card.append(h('div', { class: 'msg bad', text: 'No valid alert loaded. Open the full workbench and paste Team 2’s alert.' })); return card; }
 
     var actions = h('div', { class: 'row' });
-    if (sampleFn && !ui.sampleOff) actions.append(h('button', { class: 'btn small' + (an ? '' : ' primary'), text: ui.running === i ? 'Running…' : (an ? 'Re-run with Claude' : 'Run AI analysis'),
+    if (!aiMode() && !IN_CLAUDE) actions.append(h('button', { class: 'btn small', text: 'Run the AI here…', onclick: function () { state.current = i; state.step = 'analyse'; switchView('desk'); } }));
+    if (aiMode()) actions.append(h('button', { class: 'btn small' + (an ? '' : ' primary'), text: ui.running === i ? 'Running…' : (an ? 'Re-run with ' + (aiMode() === 'key' ? modelLabel() : 'Claude') : 'Run AI analysis'),
       disabled: ui.running !== null ? true : null, onclick: function () { runClaude(i, D); } }));
     if (ui.running === i) actions.append(h('button', { class: 'btn small', text: 'Stop', onclick: function () { if (ctl) ctl.abort(); } }));
     var status = ui.lastRun === i && ui.status ? h('div', { id: ui.running === i ? 'ai-status' : null, class: 'msg ' + ui.statusKind, role: 'status', text: ui.status }) : null;

@@ -292,3 +292,23 @@ test('normalizeIncident and normalizeConfig survive hostile shared data', () => 
   assert.deepEqual(cfg.keep, ['x']);
   assert.equal(cfg.customTerms, '');
 });
+
+test('direct AI: request shape, reply parsing, error messages, key check', () => {
+  const r = C.anthropicRequest('hello', 'claude-haiku-5-5');
+  assert.equal(r.url, 'https://api.anthropic.com/v1/messages');
+  assert.equal(r.body.model, 'claude-haiku-5-5');
+  assert.deepEqual(r.body.messages, [{ role: 'user', content: 'hello' }]);
+  assert.equal(C.anthropicRequest('x', 'evil-model').body.model, 'claude-sonnet-5-5', 'unknown model falls back');
+  assert.equal(C.anthropicText({ content: [{ type: 'text', text: '{"a":' }, { type: 'tool_use' }, { type: 'text', text: '1}' }] }), '{"a":1}');
+  assert.throws(() => C.anthropicText({ content: [] }));
+  assert.throws(() => C.anthropicText(null));
+  assert.match(C.apiErrorMessage(401, {}), /key was rejected/);
+  assert.match(C.apiErrorMessage(400, { error: { message: 'Your credit balance is too low' } }), /no credit/);
+  assert.match(C.apiErrorMessage(0), /Could not reach/);
+  assert.match(C.apiErrorMessage(529), /busy/);
+  assert.equal(C.looksLikeKey('sk-ant-api03-' + 'a'.repeat(30)), true);
+  assert.equal(C.looksLikeKey('hello'), false);
+  // the analysis path still validates whatever the model returns
+  const an = C.sanitizeAnalysis(C.extractJson('Here you go:\n```json\n' + JSON.stringify(D.EXAMPLE_ANALYSES[0]) + '\n```'));
+  assert.equal(an.severity, 'Medium');
+});
