@@ -38,7 +38,7 @@ python3 build.py          # rebuilds index.html from src/
 node --test tests/core.test.js   # 25 tests: redaction, leak checks, claim checks, KPIs, API handling, hostile input
 ```
 
-`src/core.js` holds all logic as pure functions (tested in Node); `src/app.html` is the UI; `src/data.js` holds the lab alerts, analyses, test commands and playbook.
+`src/core.js` holds all logic as pure functions (tested in Node); `src/app.html` is the UI; `src/data.js` holds the lab alerts, analyses, test commands and playbook; `src/i18n.js` holds the French translations (English/French switch in the header, plus Auto/Light/Dark theme).
 
 ## Security notes
 

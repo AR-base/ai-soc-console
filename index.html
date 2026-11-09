@@ -12,37 +12,46 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: analyst desk — incident queue on the left, five-step case workspace on the right; redaction bars are the signature mark. */
+/* Direction: Apple-style glass console — translucent header and cards over a quiet aurora, pill controls, SF-like type; redaction chips stay the signature mark. */
 :root {
-  --bg: #ECEFF2; --surface: #FFFFFF; --surface-2: #F5F7F9; --ink: #13202B; --ink-2: #4B5A67; --ink-3: #6B7985;
-  --line: #D3DAE0; --line-2: #E4E9ED;
-  --accent: #0A6F6A; --accent-weak: #DCEFEE; --on-accent: #FFFFFF;
-  --bar: #13202B; --on-bar: #F1F4F6;
-  --ok: #1D7445; --ok-weak: #E1F2E8; --warn: #955800; --warn-weak: #FBEFD9; --bad: #B0261E; --bad-weak: #FBE3E1; --info: #35598F; --info-weak: #E2EAF6;
-  --sev-low: #4E7A5B; --sev-medium: #A06E0C; --sev-high: #C2501A; --sev-critical: #A0142C;
-  --f-display: 'IBM Plex Sans Condensed', 'Arial Narrow', 'Helvetica Neue', sans-serif;
-  --f-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --f-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
-  --r: 6px;
+  --bg: #F5F5F7; --bg-glow-1: rgba(0, 113, 227, .10); --bg-glow-2: rgba(94, 92, 230, .08);
+  --surface: rgba(255, 255, 255, .78); --surface-solid: #FFFFFF; --surface-2: rgba(118, 118, 128, .10); --ink: #1D1D1F; --ink-2: #424245; --ink-3: #6E6E73;
+  --line: rgba(0, 0, 0, .09); --line-2: rgba(0, 0, 0, .05);
+  --accent: #0071E3; --accent-2: #5E5CE6; --accent-weak: rgba(0, 113, 227, .10); --on-accent: #FFFFFF;
+  --bar: #1D1D1F; --on-bar: #F5F5F7;
+  --ok: #1E7F38; --ok-weak: rgba(52, 199, 89, .14); --warn: #A35200; --warn-weak: rgba(255, 149, 0, .14); --bad: #C4161C; --bad-weak: rgba(255, 59, 48, .12); --info: #0060C0; --info-weak: rgba(0, 113, 227, .10);
+  --sev-low: #1E8E3E; --sev-medium: #C56A00; --sev-high: #D9480F; --sev-critical: #C4161C;
+  --shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 8px 28px rgba(0, 0, 0, .07);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .08), 0 0 0 .5px rgba(0, 0, 0, .06);
+  --f-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --f-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --f-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+  --r: 14px; --r-lg: 20px;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0D1318; --surface: #141C23; --surface-2: #19232C; --ink: #E3E9EE; --ink-2: #A3B1BC; --ink-3: #85939F;
-  --line: #2A3641; --line-2: #202B35;
-  --accent: #3DBAB2; --accent-weak: #123432; --on-accent: #04201E;
-  --bar: #E3E9EE; --on-bar: #0D1318;
-  --ok: #5DC48A; --ok-weak: #12301F; --warn: #E3A645; --warn-weak: #33260F; --bad: #F2766D; --bad-weak: #3A1715; --info: #8FB1E8; --info-weak: #17243A;
-  --sev-low: #7DB38C; --sev-medium: #E0A93B; --sev-high: #F07A45; --sev-critical: #F2607A;
+  --bg: #000000; --bg-glow-1: rgba(10, 132, 255, .22); --bg-glow-2: rgba(94, 92, 230, .16);
+  --surface: rgba(28, 28, 30, .72); --surface-solid: #1C1C1E; --surface-2: rgba(44, 44, 46, .78); --ink: #F5F5F7; --ink-2: #C7C7CC; --ink-3: #8E8E93;
+  --line: rgba(255, 255, 255, .10); --line-2: rgba(255, 255, 255, .06);
+  --accent: #0A84FF; --accent-2: #5E5CE6; --accent-weak: rgba(10, 132, 255, .18); --on-accent: #FFFFFF;
+  --bar: #F5F5F7; --on-bar: #000000;
+  --ok: #30D158; --ok-weak: rgba(48, 209, 88, .16); --warn: #FF9F0A; --warn-weak: rgba(255, 159, 10, .16); --bad: #FF453A; --bad-weak: rgba(255, 69, 58, .16); --info: #64D2FF; --info-weak: rgba(100, 210, 255, .14);
+  --sev-low: #30D158; --sev-medium: #FF9F0A; --sev-high: #FF6B3D; --sev-critical: #FF453A;
+  --shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 10px 30px rgba(0, 0, 0, .45);
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 1px 2px rgba(0, 0, 0, .5);
   color-scheme: dark;
 } }
 :root[data-theme="dark"] {
-  --bg: #0D1318; --surface: #141C23; --surface-2: #19232C; --ink: #E3E9EE; --ink-2: #A3B1BC; --ink-3: #85939F;
-  --line: #2A3641; --line-2: #202B35;
-  --accent: #3DBAB2; --accent-weak: #123432; --on-accent: #04201E;
-  --bar: #E3E9EE; --on-bar: #0D1318;
-  --ok: #5DC48A; --ok-weak: #12301F; --warn: #E3A645; --warn-weak: #33260F; --bad: #F2766D; --bad-weak: #3A1715; --info: #8FB1E8; --info-weak: #17243A;
-  --sev-low: #7DB38C; --sev-medium: #E0A93B; --sev-high: #F07A45; --sev-critical: #F2607A;
+  --bg: #000000; --bg-glow-1: rgba(10, 132, 255, .22); --bg-glow-2: rgba(94, 92, 230, .16);
+  --surface: rgba(28, 28, 30, .72); --surface-solid: #1C1C1E; --surface-2: rgba(44, 44, 46, .78); --ink: #F5F5F7; --ink-2: #C7C7CC; --ink-3: #8E8E93;
+  --line: rgba(255, 255, 255, .10); --line-2: rgba(255, 255, 255, .06);
+  --accent: #0A84FF; --accent-2: #5E5CE6; --accent-weak: rgba(10, 132, 255, .18); --on-accent: #FFFFFF;
+  --bar: #F5F5F7; --on-bar: #000000;
+  --ok: #30D158; --ok-weak: rgba(48, 209, 88, .16); --warn: #FF9F0A; --warn-weak: rgba(255, 159, 10, .16); --bad: #FF453A; --bad-weak: rgba(255, 69, 58, .16); --info: #64D2FF; --info-weak: rgba(100, 210, 255, .14);
+  --sev-low: #30D158; --sev-medium: #FF9F0A; --sev-high: #FF6B3D; --sev-critical: #FF453A;
+  --shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 10px 30px rgba(0, 0, 0, .45);
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 1px 2px rgba(0, 0, 0, .5);
   color-scheme: dark;
 }
 
@@ -325,22 +334,182 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 @media (prefers-reduced-motion: no-preference) {
   .btn, .qcard, .step { transition: border-color .15s, background-color .15s, filter .15s; }
 }
+
+/* ===================== Apple-style layer ===================== */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(1100px 560px at 8% -12%, var(--bg-glow-1), transparent 62%), radial-gradient(900px 520px at 100% -6%, var(--bg-glow-2), transparent 58%);
+  background-attachment: fixed; letter-spacing: -0.006em;
+}
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.022em; }
+.eyebrow { font-family: var(--f-body); font-size: 11.5px; font-weight: 600; letter-spacing: .06em; color: var(--ink-3); }
+code, .mono, pre, textarea.code { font-family: var(--f-mono); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+
+/* glass, with a solid fallback */
+.top, .panel, .ai-card, .inc, .kpi, .qcard, .toast { -webkit-backdrop-filter: saturate(180%) blur(22px); backdrop-filter: saturate(180%) blur(22px); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { :root { --surface: var(--surface-solid); } }
+@media (prefers-reduced-transparency: reduce) { :root { --surface: var(--surface-solid); } }
+
+/* header */
+body::before { background: var(--surface); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); }
+.top { background: var(--surface); border-bottom: 1px solid var(--line); }
+.nav { align-items: center; padding-block: 10px; gap: 10px 16px; }
+.brand { padding-bottom: 0; gap: 10px; flex-wrap: nowrap; }
+.brand b { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+.logo { width: 26px; height: 26px; border-radius: 8px; flex: 0 0 auto; position: relative;
+  background: conic-gradient(from 220deg, var(--accent), var(--accent-2), #64D2FF, var(--accent)); box-shadow: 0 4px 14px var(--accent-weak); }
+.logo::after { content: ""; position: absolute; inset: 6px 6px 8px; border-radius: 3px 3px 7px 7px; background: rgba(255, 255, 255, .92); }
+.prefs { display: flex; gap: 8px; margin-left: auto; }
+.tabs { order: 3; width: 100%; background: var(--surface-2); border-radius: 999px; padding: 3px; gap: 2px; }
+.tab { border: 0; border-radius: 999px; padding: 6px 14px; font-weight: 500; font-size: 14px; color: var(--ink-2); flex: 1 0 auto; justify-content: center; transition: background-color .2s, color .2s, box-shadow .2s; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--surface-solid); color: var(--ink); box-shadow: var(--shadow-sm); border: 0; }
+.tab .tn { border: 0; background: var(--accent-weak); color: var(--accent); border-radius: 6px; padding: 1px 6px; font-size: 10.5px; font-weight: 700; font-family: var(--f-body); }
+.tab[aria-selected="true"] .tn { background: var(--accent); color: var(--on-accent); }
+.segmented { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 3px; gap: 2px; }
+.segmented button { border: 0; background: none; border-radius: 999px; min-width: 34px; height: 28px; padding: 0 10px; font-size: 12.5px; font-weight: 600; color: var(--ink-2); cursor: pointer; display: inline-grid; place-items: center; transition: background-color .2s, color .2s; }
+.segmented button svg { width: 15px; height: 15px; display: block; }
+.segmented button[aria-pressed="true"] { background: var(--surface-solid); color: var(--ink); box-shadow: var(--shadow-sm); }
+@media (min-width: 1120px) {
+  .nav { flex-wrap: nowrap; }
+  .tabs { order: 0; width: auto; margin-inline: auto; }
+  .prefs { margin-left: 0; }
+  .queue { top: calc(env(safe-area-inset-top, 0px) + 74px); }
+}
+@media (max-width: 1119px) { .queue { top: calc(env(safe-area-inset-top, 0px) + 116px); } }
+
+/* surfaces */
+.panel, .ai-card, .inc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.panel { padding: 22px; }
+.sheet { border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--surface-solid); box-shadow: var(--shadow); }
+.box, .pb-col, .sevcell, .ai-why { background: var(--surface-2); border: 0; border-radius: var(--r); }
+.ai-card { border-top: 1px solid var(--line); }
+.ai-card::before, .scen::before, .inc::before { content: ""; position: absolute; pointer-events: none; }
+.ai-card::before { inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--sevc), transparent 75%); }
+.scen { border-top: 1px solid var(--line); }
+.scen::before { inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2) 40%, transparent 80%); }
+.inc { border-left: 1px solid var(--line); }
+.inc::before { inset: 0 auto 0 0; width: 3px; background: linear-gradient(180deg, var(--sevc), transparent); }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow-sm); transition: box-shadow .2s, border-color .2s, transform .15s; }
+.qcard:hover { transform: translateY(-1px); }
+.qcard::before { width: 4px; top: 12px; bottom: 12px; left: 6px; border-radius: 4px; }
+.qcard[aria-current="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak); }
+.claim, .ck, .opt { border-radius: var(--r); border-color: var(--line); background: var(--surface); }
+.claim { border-left-width: 3px; }
+.ck { border-color: var(--line-2); }
+.ck-conflict, .ck-missing { background: var(--bad-weak); }
+.table-wrap { border-radius: 12px; border-color: var(--line); background: var(--surface); }
+th { font-family: var(--f-body); font-weight: 600; font-size: 11px; letter-spacing: .05em; background: var(--surface-2); }
+td, th { border-bottom-color: var(--line-2); }
+details { border-radius: 12px; border-color: var(--line); background: var(--surface); }
+details > summary { border-radius: 12px; }
+
+/* type */
+.vhead h1, .ai-top h1 { font-size: clamp(30px, 4.6vw, 46px); letter-spacing: -0.035em; font-weight: 800; }
+.case-head h2 { letter-spacing: -0.03em; }
+.panel h3 { font-size: 20px; letter-spacing: -0.02em; }
+.objective, .lede { color: var(--ink-2); }
+
+/* controls */
+.btn { border: 0; border-radius: 999px; background: var(--surface-2); color: var(--ink); font-weight: 600; padding: 8px 16px; font-size: 14px; transition: transform .12s, background-color .15s, box-shadow .15s, filter .15s; }
+.btn:hover { background: var(--line); border-color: transparent; }
+.btn:active { transform: scale(.97); }
+.btn.primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 6px 18px var(--accent-weak); }
+.btn.primary:hover { background: var(--accent); filter: brightness(1.08); }
+.btn.dark { background: var(--ink); color: var(--bg); }
+.btn.dark:hover { background: var(--ink); filter: brightness(1.15); }
+.btn.small { padding: 5px 12px; font-size: 13px; }
+.code-wrap .copy { box-shadow: var(--shadow-sm); background: var(--surface-solid); }
+textarea, input[type="text"], input[type="password"], select { background: var(--surface-2); border: 1px solid transparent; border-radius: 10px; padding: 9px 12px; transition: border-color .15s, box-shadow .15s; }
+textarea:focus, input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-weak); }
+textarea.code, pre.json { border-radius: 12px; }
+pre.json { background: var(--surface-2); border: 0; }
+.steps { border: 0; border-radius: 999px; background: var(--surface-2); padding: 4px; gap: 2px; }
+.step { border: 0; border-radius: 999px; padding: 7px 14px; transition: background-color .2s, box-shadow .2s; }
+.step[aria-selected="true"] { background: var(--surface-solid); box-shadow: var(--shadow-sm); }
+.step .num { border-color: var(--line); }
+.step.done .num { background: var(--ok); border-color: var(--ok); color: #fff; }
+.seg { border: 0; border-radius: 999px; background: var(--surface-2); padding: 2px; gap: 2px; }
+.seg button { border: 0; border-radius: 999px; background: none; padding: 5px 12px; }
+.seg button[aria-pressed="true"].v { background: var(--ok); color: #fff; }
+.seg button[aria-pressed="true"].r { background: var(--bad); color: #fff; }
+.seg button[aria-pressed="true"].u { background: var(--ink-2); color: var(--bg); }
+.stepname .num { background: var(--accent); color: var(--on-accent); }
+
+/* badges, chips, messages */
+.badge { border: 0; border-radius: 999px; font-family: var(--f-body); font-size: 11px; font-weight: 600; letter-spacing: .02em; text-transform: none; padding: 3px 10px; background: var(--surface-2); color: var(--ink-2); }
+.badge.live { background: var(--ok-weak); color: var(--ok); }
+.badge.warn { background: var(--warn-weak); color: var(--warn); }
+.badge.sample { background: transparent; color: var(--ink-3); box-shadow: inset 0 0 0 1px var(--line); }
+.chip { border: 0; border-radius: 6px; font-family: var(--f-body); font-weight: 600; font-size: 11px; background: var(--surface-2); color: var(--ink-2); padding: 1px 7px; }
+.chip.fact { background: var(--info-weak); color: var(--info); }
+.chip.inference { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+.prio-Now { background: var(--bad-weak); color: var(--bad); }
+.prio-Soon { background: var(--warn-weak); color: var(--warn); }
+.msg { border-radius: 12px; padding: 10px 14px; }
+.redact { border-radius: 5px; padding: 0 .45em; }
+.sev::before { border-radius: 50%; width: 8px; height: 8px; box-shadow: 0 0 8px var(--c); }
+.ck .ic { box-shadow: 0 0 10px currentColor; border-width: 1.5px; }
+
+/* KPIs and timeline */
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); position: relative; overflow: hidden; padding: 14px 16px; box-shadow: var(--shadow-sm); }
+.kpi::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--kc), transparent); }
+.kpi { border-top: 1px solid var(--line); }
+.kpi b { font-size: 34px; letter-spacing: -0.035em; font-weight: 800; }
+.kpi-none { --kc: var(--ink-3); }
+.tl-dot { box-shadow: 0 0 0 3px var(--surface-solid), 0 0 14px var(--sevc); }
+.tl-gap { border: 0; background: var(--surface-2); }
+.speech { border-left-color: var(--accent); }
+.toast { border-radius: 999px; background: var(--ink); color: var(--bg); box-shadow: var(--shadow); padding: 9px 18px; }
+.overlay .box { border-radius: var(--r-lg); background: var(--surface-solid); }
+@media (prefers-reduced-motion: no-preference) { body { transition: background-color .3s; } }
+@media (prefers-reduced-motion: reduce) { .qcard:hover { transform: none; } .btn:active { transform: none; } }
+
+/* polish */
+.ai-block h4, .queue h2, .pb-phase { font-family: var(--f-body); font-weight: 600; letter-spacing: .05em; }
+.box textarea, .box input[type="text"], .box input[type="password"], .box select, .sevcell select, .ai-why textarea { background: var(--surface-solid); }
+.sync-dot { display: none; }
+@media (max-width: 560px) {
+  .kpi b { font-size: 26px; }
+  .nav { gap: 8px; }
+  .segmented button { min-width: 30px; height: 26px; padding: 0 8px; }
+  .brand b { font-size: 16px; }
+}
+@media (max-width: 560px) {
+  #sync-chip { font-size: 0; padding: 0; width: 10px; height: 10px; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+  .logo { width: 24px; height: 24px; }
+}
+@media (max-width: 370px) { .brand b { display: none; } }
 </style>
 
 <header class="top">
   <div class="wrap nav">
-    <div class="brand"><span class="redact" aria-hidden="true">SOC</span><b>AI-Powered SOC</b><span class="hint">Shared Wazuh · Windows lab · lab data only</span><span class="badge warn" id="sync-chip" role="status">Connecting…</span></div>
-    <nav class="tabs" role="tablist" aria-label="Teams">
-      <button class="tab" role="tab" id="tab-detect" data-view="detect"><span class="tn">T2</span>Detection</button>
-      <button class="tab" role="tab" id="tab-ai" data-view="ai"><span class="tn">T3</span>AI analysis</button>
-      <button class="tab" role="tab" id="tab-command" data-view="command"><span class="tn">T4</span>Command center</button>
-      <button class="tab" role="tab" id="tab-method" data-view="method">Method &amp; limits</button>
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <b>AI-Powered SOC</b>
+      <span class="badge warn" id="sync-chip" role="status">Connecting…</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Teams" data-en-label="Teams">
+      <button class="tab" role="tab" id="tab-detect" data-view="detect"><span class="tn">T2</span><span data-en="Detection">Detection</span></button>
+      <button class="tab" role="tab" id="tab-ai" data-view="ai"><span class="tn">T3</span><span data-en="AI analysis">AI analysis</span></button>
+      <button class="tab" role="tab" id="tab-command" data-view="command"><span class="tn">T4</span><span data-en="Command center">Command center</span></button>
+      <button class="tab" role="tab" id="tab-method" data-view="method"><span data-en="Method &amp; limits">Method &amp; limits</span></button>
     </nav>
+    <div class="prefs">
+      <div class="segmented" role="group" id="lang-seg" aria-label="Language" data-en-label="Language">
+        <button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+      <div class="segmented" role="group" id="theme-seg" aria-label="Theme" data-en-label="Theme">
+        <button type="button" data-theme-set="auto" aria-pressed="false" data-en-title="Auto" title="Auto"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg></button><button type="button" data-theme-set="light" aria-pressed="false" data-en-title="Light" title="Light"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9 13 13M3 13l1.1-1.1M11.9 4.1 13 3"/></g></svg></button><button type="button" data-theme-set="dark" aria-pressed="false" data-en-title="Dark" title="Dark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.6 10.2A6 6 0 0 1 5.8 2.4a6 6 0 1 0 7.8 7.8z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
   </div>
 </header>
 
 <main id="app" class="wrap"></main>
-<footer class="wrap site-foot">Built by Pinninti Sai Anish · ESAIP MSc Cybersecurity &amp; Data Science · class exercise “Build your AI-powered SOC”. Lab data only; personal details are replaced with placeholders. Work you do here stays in your browser.</footer>
+<footer class="wrap site-foot" data-en="Built by Pinninti Sai Anish · ESAIP MSc Cybersecurity &amp; Data Science · class exercise “Build your AI-powered SOC”. Lab data only; personal details are replaced with placeholders. Work you do here stays in your browser.">Built by Pinninti Sai Anish · ESAIP MSc Cybersecurity &amp; Data Science · class exercise “Build your AI-powered SOC”. Lab data only; personal details are replaced with placeholders. Work you do here stays in your browser.</footer>
 
 <script>/* Team 3 core: redaction, claim checks, severity, prompt and summary builders.
    Pure functions only — no DOM. Exposed as Core (browser) or module.exports (tests). */
@@ -679,7 +848,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     unknowns: ['what the alert cannot tell us']
   };
 
-  function buildPrompt(inc, redacted, context) {
+  function buildPrompt(inc, redacted, context, lang) {
     var k = keyFields(redacted);
     var band = wazuhBand(k.level);
     var lines = [
@@ -696,6 +865,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       '6. List what the alert cannot tell us.',
       '7. Make 5 to 9 claims, mostly facts. Do not invent fields that are not in the JSON.'
     ];
+    if (lang === 'fr') lines.push('8. Write every text value in French. Keep the JSON keys and these values in English: Low, Medium, High, Critical, Now, Soon, Later, fact, inference.');
     if (context && context.length) {
       lines.push('', 'Other alerts from the same exercise (context only, do not cite them as fields):');
       context.forEach(function (c) { lines.push('- ' + c); });
@@ -825,8 +995,30 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   };
   var LOGON_TYPES = { '2': 'interactive', '3': 'network', '4': 'batch', '5': 'service', '7': 'unlock', '8': 'network cleartext', '9': 'new credentials', '10': 'remote interactive (RDP)', '11': 'cached interactive' };
 
+  var EVENT_NAMES_FR = {
+    '4624': 'une connexion réussie', '4625': 'un échec de connexion', '4634': 'une déconnexion', '4648': 'une connexion avec identifiants explicites',
+    '4672': 'des privilèges spéciaux attribués à une nouvelle session', '4720': 'la création d’un compte utilisateur', '4722': 'l’activation d’un compte utilisateur',
+    '4724': 'une tentative de réinitialisation de mot de passe', '4726': 'la suppression d’un compte utilisateur', '4728': 'un membre ajouté à un groupe global de sécurité',
+    '4732': 'un membre ajouté à un groupe local de sécurité', '4733': 'un membre retiré d’un groupe local', '4738': 'la modification d’un compte utilisateur',
+    '4740': 'le verrouillage d’un compte', '1102': 'l’effacement du journal d’audit'
+  };
+  var LOGON_TYPES_FR = { '2': 'interactive', '3': 'réseau', '4': 'batch', '5': 'service', '7': 'déverrouillage', '8': 'réseau en clair', '9': 'nouveaux identifiants', '10': 'interactive à distance (RDP)', '11': 'interactive en cache' };
+  function explainAlertFr(alert) {
+    var k = keyFields(alert);
+    var s = 'La règle Wazuh ' + k.ruleId + ' (« ' + k.description + ' », niveau ' + k.level + ') s’est déclenchée' + (k.agent ? ' sur l’agent ' + k.agent : '');
+    if (k.eventId) s += ' car le journal Sécurité de Windows a enregistré l’événement ' + k.eventId + (EVENT_NAMES_FR[k.eventId] ? ', ' + EVENT_NAMES_FR[k.eventId] : '');
+    s += k.group ? ' (compte ' + k.user + ' ajouté à ' + k.group + ' par ' + (k.actor || 'inconnu') + ')' : (k.user ? ' pour le compte ' + k.user : '');
+    if (k.logonType) s += ', type de connexion ' + k.logonType + (LOGON_TYPES_FR[k.logonType] ? ' (' + LOGON_TYPES_FR[k.logonType] + ')' : '');
+    var freq = num(getPath(alert, 'rule.frequency'));
+    if (freq) s += '. C’est une règle de corrélation : il lui faut ' + freq + ' événements correspondants dans sa fenêtre de temps';
+    var lat = detectSeconds(alert);
+    if (lat != null) s += '. Windows a enregistré l’événement à ' + k.eventTime.replace('T', ' ').slice(0, 19) + ' UTC ; Wazuh a levé l’alerte ' + fmtDuration(lat) + ' plus tard';
+    return s + '.';
+  }
+
   // Plain-language "why this alert fired" for Team 2's handoff.
-  function explainAlert(alert) {
+  function explainAlert(alert, lang) {
+    if (lang === 'fr') return explainAlertFr(alert);
     var k = keyFields(alert);
     var parts = ['Wazuh rule ' + k.ruleId + ' ("' + k.description + '", level ' + k.level + ') fired'];
     if (k.agent) parts.push('on agent ' + k.agent);
@@ -882,8 +1074,42 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     };
   }
 
+  // French two-minute briefing. `tr` translates UI/analysis strings (tokens kept), then tokens become real names.
+  var SEV_FR = { Low: 'faible', Medium: 'moyenne', High: 'élevée', Critical: 'critique', unrated: 'non évaluée', unknown: 'inconnue' };
+  function briefingFr(rows, kpi, entities, tr) {
+    var L = [], host = '';
+    var T = function (x) { return detokenize(tr(x), entities).replace(/[.\s]+$/, ''); };
+    rows.some(function (r) { if (r.alert) { host = keyFields(r.alert).agent; } return !!host; });
+    L.push('Bonjour. Voici le briefing du centre de commandement de notre SOC Wazuh partagé.');
+    L.push('Wazuh a levé des alertes pour ' + kpi.coverage.value + ' de nos ' + kpi.coverage.total + ' scénarios sur le poste Windows ' + (host || 'du labo') +
+      (kpi.mttd.seconds != null ? ', en moyenne ' + fmtDuration(kpi.mttd.seconds) + ' après l’enregistrement par Windows' + (kpi.mttd.constant ? ', un écart si constant qu’il vient très probablement de l’horloge de la VM, pas d’une détection lente.' : '.') : '.'));
+    rows.forEach(function (r) {
+      if (!r.alert) return;
+      var s = r.summary;
+      if (!s) {
+        var kk = keyFields(r.alert);
+        L.push(r.id + ', ' + tr(String(r.scenario || '')).toLowerCase() + ' : règle Wazuh ' + kk.ruleId + ' au niveau ' + kk.level + ' (' + (SEV_FR[wazuhBand(kk.level)] || 'non évaluée') + '). L’analyse de l’équipe 3 est en attente.');
+        return;
+      }
+      var sev = s.finalSeverity || s.aiSeverity || 'unrated';
+      var first = s.verified[0] ? T(s.verified[0].text) : 'Aucun constat vérifié pour l’instant';
+      var st = r.decision && r.decision.status && r.decision.status !== 'Open' ? r.decision.status : '';
+      var dec = st ? ' Décision : ' + tr(st).toLowerCase() + (r.decision.note ? ', ' + detokenize(r.decision.note, entities).replace(/[.\s]+$/, '') : '') + '.' : ' Décision en attente.';
+      L.push(s.id + ', ' + tr(s.scenario).toLowerCase() + ' : gravité ' + (SEV_FR[sev] || sev) + ' (Wazuh seul disait ' + (SEV_FR[s.band || 'unknown'] || 'inconnue') + '). ' + first + '.' + dec);
+    });
+    var a = kpi.accuracy;
+    L.push('L’IA nous a aidés à trier plus vite, mais nous ne lui avons pas fait confiance aveuglément. Elle a fait ' + kpi.verification.made + ' affirmations ; nous en avons vérifié ' + kpi.verification.reviewed + ' dans le journal, confirmé ' + a.verified + ' et rejeté ' + a.rejected + '.');
+    var rejected = null;
+    rows.some(function (r) { if (r.summary && r.summary.rejected[0]) { rejected = r.summary.rejected[0]; } return !!rejected; });
+    if (rejected) L.push('Par exemple, l’IA a dit : « ' + T(rejected.text) + ' ». Le journal indiquait ' + (rejected.field ? rejected.field + ' = ' + detokenize(rejected.actual || 'rien', entities) : 'autre chose') + ' : cette affirmation n’a donc jamais servi à une décision.');
+    L.push(kpi.openHigh.value ? kpi.openHigh.value + ' incident(s) élevé(s) ou critique(s) reste(nt) ouvert(s).' : 'Aucun incident élevé ou critique ne reste ouvert.');
+    L.push('Nos priorités : contenir toute modification de droits administrateur en 15 minutes, ajouter une règle qui relie les échecs de connexion à une réussite ultérieure, et garder une vérification humaine sur chaque affirmation de l’IA.');
+    return L.join('\n\n');
+  }
+
   // Two-minute spoken briefing (~250 words) from verified material only.
-  function briefing(rows, kpi, entities) {
+  function briefing(rows, kpi, entities, lang, tr) {
+    if (lang === 'fr') return briefingFr(rows, kpi, entities, tr || function (x) { return x; });
     var L = [];
     var host = '';
     rows.some(function (r) { if (r.alert) { host = keyFields(r.alert).agent; } return !!host; });
@@ -1777,6 +2003,657 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   else root.LabData = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 </script>
+<script>/* French translations (generated from i18n_src.py). Keys are the exact English strings the UI shows. */
+(function (root) {
+  'use strict';
+  var FR = {
+ "Built by Pinninti Sai Anish · ESAIP MSc Cybersecurity & Data Science · class exercise “Build your AI-powered SOC”. Lab data only; personal details are replaced with placeholders. Work you do here stays in your browser.": "Réalisé par Pinninti Sai Anish · ESAIP MSc Cybersécurité et Science des données · exercice de cours « Build your AI-powered SOC ». Données de laboratoire uniquement ; les informations personnelles sont remplacées par des valeurs fictives. Votre travail ici reste dans votre navigateur.",
+ "Detection": "Détection",
+ "AI analysis": "Analyse IA",
+ "Command center": "Centre de commandement",
+ "Method & limits": "Méthode et limites",
+ "Shared Wazuh · Windows lab · lab data only": "Wazuh partagé · labo Windows · données de labo uniquement",
+ "Connecting…": "Connexion…",
+ "Shared · live": "Partagé · en direct",
+ "Shared · view only": "Partagé · lecture seule",
+ "Shared · empty": "Partagé · vide",
+ "This browser only": "Ce navigateur uniquement",
+ "Language": "Langue",
+ "Theme": "Thème",
+ "Auto": "Auto",
+ "Light": "Clair",
+ "Dark": "Sombre",
+ "Teams": "Équipes",
+ "Views": "Vues",
+ "Copy": "Copier",
+ "Copy prompt": "Copier le prompt",
+ "Copy as Markdown": "Copier en Markdown",
+ "Copy table as Markdown": "Copier le tableau en Markdown",
+ "Copy briefing": "Copier le briefing",
+ "Copy for the class": "Copier pour la classe",
+ "Copy playbook": "Copier le playbook",
+ "Copy evidence pack (Markdown)": "Copier le dossier de preuves (Markdown)",
+ "Copy Team 3 findings briefing (separate)": "Copier le briefing des constats de l’équipe 3 (séparé)",
+ "Save .md": "Enregistrer .md",
+ "Save evidence pack .md": "Enregistrer le dossier de preuves .md",
+ "Select all and copy": "Tout sélectionner et copier",
+ "Close": "Fermer",
+ "Text to copy": "Texte à copier",
+ "Copy text": "Copier le texte",
+ "Text": "Texte",
+ "Prompt": "Prompt",
+ "Briefing": "Briefing",
+ "Playbook": "Playbook",
+ "Evidence pack": "Dossier de preuves",
+ "Handoff table": "Tableau de transmission",
+ "Team 3 findings": "Constats de l’équipe 3",
+ "Priorities and lessons": "Priorités et leçons",
+ "Summary": "Synthèse",
+ "Markdown": "Markdown",
+ "Setup commands": "Commandes d’installation",
+ "Test commands": "Commandes de test",
+ "Query": "Requête",
+ "Custom rule": "Règle personnalisée",
+ "Clean-up commands": "Commandes de nettoyage",
+ "Case file reset": "Dossier réinitialisé",
+ "AI connected": "IA connectée",
+ "Key forgotten": "Clé oubliée",
+ "Choose…": "Choisir…",
+ "Name": "Nom",
+ "Show": "Montrer",
+ "Steps": "Étapes",
+ "Progress": "Progression",
+ "Capture status": "État de la capture",
+ "Incident queue": "File des incidents",
+ "Incidents in time order": "Incidents par ordre chronologique",
+ "Low": "Faible",
+ "Medium": "Moyenne",
+ "High": "Élevée",
+ "Critical": "Critique",
+ "Unrated": "Non évaluée",
+ "Now": "Immédiat",
+ "Soon": "Bientôt",
+ "Later": "Plus tard",
+ "Open": "Ouvert",
+ "Contained": "Contenu",
+ "Monitoring": "Sous surveillance",
+ "Closed — lab test": "Clos — test de labo",
+ "Closed — false positive": "Clos — faux positif",
+ "Failed logins": "Échecs de connexion",
+ "Unusual access": "Accès inhabituel",
+ "Sensitive change": "Modification sensible",
+ "Failed logins · ": "Échecs de connexion · ",
+ "Unusual access · ": "Accès inhabituel · ",
+ "Sensitive change · ": "Modification sensible · ",
+ "15 minutes": "15 minutes",
+ "1 hour": "1 heure",
+ "4 hours": "4 heures",
+ "1 working day": "1 jour ouvré",
+ "AI": "IA",
+ "Wazuh": "Wazuh",
+ "final": "finale",
+ "not confirmed": "non confirmée",
+ "unconfirmed": "non confirmée",
+ "Fact": "Fait",
+ "Inference": "Inférence",
+ "Same": "Identique",
+ "AI rates higher": "L’IA évalue plus haut",
+ "AI rates lower": "L’IA évalue plus bas",
+ "Lab sample": "Échantillon de labo",
+ "Real · lab VM": "Réel · VM du labo",
+ "Team 2": "Équipe 2",
+ "Team 2 alert": "Alerte de l’équipe 2",
+ "Claude · prepared": "Claude · préparé",
+ "Example answer": "Réponse d’exemple",
+ "Pasted AI answer": "Réponse IA collée",
+ "No analysis yet": "Pas encore d’analyse",
+ "Sent to T4": "Envoyé à l’É4",
+ "Includes lab samples": "Contient des échantillons",
+ "Live lab alerts": "Alertes réelles du labo",
+ "Checked": "Vérifié",
+ "no alert": "aucune alerte",
+ "lab sample": "échantillon",
+ "real ✓": "réel ✓",
+ "captured ✓": "capturé ✓",
+ "check rule": "vérifier la règle",
+ "sample": "échantillon",
+ "real": "réel",
+ "Shared case file": "Dossier partagé",
+ "Opening the shared case file…": "Ouverture du dossier partagé…",
+ "Loading the latest alerts, reviews and decisions from your class.": "Chargement des dernières alertes, vérifications et décisions de votre classe.",
+ "This is taking longer than usual. Check your connection; the console keeps trying.": "C’est plus long que d’habitude. Vérifiez votre connexion ; la console continue d’essayer.",
+ "The shared case file is empty": "Le dossier partagé est vide",
+ "Start it from the three real alerts on the lab VM. Everyone you share this console with will see the same incidents, reviews and decisions.": "Démarrez-le à partir des trois alertes réelles de la VM du labo. Toutes les personnes avec qui vous partagez cette console verront les mêmes incidents, vérifications et décisions.",
+ "Start the shared case file": "Démarrer le dossier partagé",
+ "Ask the owner to start it; you have view-only access.": "Demandez au propriétaire de le démarrer ; vous êtes en lecture seule.",
+ "A change could not be saved yet. It is retried with your next edit.": "Une modification n’a pas encore pu être enregistrée. Nouvel essai à votre prochaine modification.",
+ "The shared case file is full, so changes are not being saved. Remove a pasted alert or reset the case.": "Le dossier partagé est plein, les modifications ne sont plus enregistrées. Supprimez une alerte collée ou réinitialisez le dossier.",
+ "You can view this console but not change it. Ask the owner for Contributor or Editor access.": "Vous pouvez consulter cette console mais pas la modifier. Demandez au propriétaire un accès Contributeur ou Éditeur.",
+ "The shared case file could not be opened, so this console is working in this browser only.": "Le dossier partagé n’a pas pu être ouvert : cette console fonctionne uniquement dans ce navigateur.",
+ "Your access to the shared case file changed. Reload the page to continue.": "Votre accès au dossier partagé a changé. Rechargez la page pour continuer.",
+ "Live updates stopped. Reload the page to see the latest changes.": "Les mises à jour en direct se sont arrêtées. Rechargez la page pour voir les derniers changements.",
+ "Sign in to share this console with your class. For now it works in this browser only.": "Connectez-vous pour partager cette console avec votre classe. Pour l’instant, elle fonctionne uniquement dans ce navigateur.",
+ "Team 2 · Detection · Windows Security log on AI-SOC-WIN11 (agent 001)": "Équipe 2 · Détection · journal Sécurité Windows sur AI-SOC-WIN11 (agent 001)",
+ "Detect suspicious activity and generate reliable alerts: run three safe tests on the lab endpoint, find each alert in Wazuh, and hand it to Team 3 with the reason it fired.": "Détecter les activités suspectes et produire des alertes fiables : lancer trois tests sans risque sur le poste du labo, retrouver chaque alerte dans Wazuh et la transmettre à l’équipe 3 avec la raison de son déclenchement.",
+ "Before you start": "Avant de commencer",
+ "Connect Tailscale, then open ": "Connectez Tailscale, puis ouvrez ",
+ ". The certificate warning is expected for this lab address only.": ". L’avertissement de certificat est normal pour cette adresse de labo uniquement.",
+ "Connect to the lab VPN (Tailscale), then open the dashboard address Team 1 sent you. A certificate warning is expected for a lab address only.": "Connectez-vous au VPN du labo (Tailscale), puis ouvrez l’adresse du tableau de bord envoyée par l’équipe 1. Un avertissement de certificat est normal pour une adresse de labo.",
+ "Log in with your own Wazuh account. Never paste a password into this page or a group chat.": "Connectez-vous avec votre propre compte Wazuh. Ne collez jamais de mot de passe dans cette page ni dans une discussion de groupe.",
+ "Under Endpoints, check that AI-SOC-WIN11 (001) is Active.": "Dans Endpoints, vérifiez que AI-SOC-WIN11 (001) est Active.",
+ "Team 1 owns the Windows VM: ask them to run the setup once, then scenarios 1, 2 and 3 in order, about a minute apart.": "L’équipe 1 gère la VM Windows : demandez-lui de lancer l’installation une fois, puis les scénarios 1, 2 et 3 dans l’ordre, à environ une minute d’intervalle.",
+ "In Threat Hunting → Events, set Last 1 hour and paste each card’s query.": "Dans Threat Hunting → Events, choisissez « Last 1 hour » et collez la requête de chaque carte.",
+ "Team 1 baseline: failed logon (event 4625) at 20:48:07 UTC → rule 60122, level 5, at 20:51:36. That is 3 min 29 s, so wait about 5 minutes before searching.": "Référence de l’équipe 1 : échec de connexion (événement 4625) à 20:48:07 UTC → règle 60122, niveau 5, à 20:51:36. Soit 3 min 29 s : attendez environ 5 minutes avant de chercher.",
+ "Setup on AI-SOC-WIN11 · once, PowerShell as Administrator": "Installation sur AI-SOC-WIN11 · une fois, PowerShell en administrateur",
+ "Repeated wrong passwords for one account: the first sign of password guessing.": "Mots de passe erronés répétés sur un compte : le premier signe d’une tentative de deviner le mot de passe.",
+ "A successful logon for the account that was just under attack. Wazuh alone rates it Low, which is exactly the gap AI analysis and a human must close.": "Une connexion réussie pour le compte qui venait d’être attaqué. Wazuh seul la classe Faible : c’est exactement l’écart que l’analyse IA et un humain doivent combler.",
+ "The attacked account gets local admin rights: the change that turns a guessed password into full control of the machine.": "Le compte attaqué obtient les droits d’administrateur local : le changement qui transforme un mot de passe deviné en contrôle total de la machine.",
+ "Failed logon": "Échec de connexion",
+ "Successful logon": "Connexion réussie",
+ "Member added to a security-enabled local group": "Membre ajouté à un groupe local de sécurité",
+ "Generate the test event": "Générer l’événement de test",
+ "Find the alert": "Trouver l’alerte",
+ "Capture and hand over": "Capturer et transmettre",
+ "On AI-SOC-WIN11, PowerShell as Administrator.": "Sur AI-SOC-WIN11, PowerShell en administrateur.",
+ "Rule 60122 (level 5) for each failure, then rule 60204 \"Multiple Windows Logon Failures\" (level 10) once 8 failures land within 4 minutes.": "Règle 60122 (niveau 5) pour chaque échec, puis règle 60204 « Multiple Windows Logon Failures » (niveau 10) dès que 8 échecs surviennent en 4 minutes.",
+ "A logon-success rule: 60106 \"Windows Logon Success\" or, on this Wazuh version, 67022 \"Non network or service local logon\" (level 3); 67028 marks admin privileges on the new logon.": "Une règle de connexion réussie : 60106 « Windows Logon Success » ou, sur cette version de Wazuh, 67022 « Non network or service local logon » (niveau 3) ; 67028 signale des privilèges administrateur sur la nouvelle session.",
+ "Rule 60154 \"Administrators Group Changed\" (level 12). Account changes also raise 60110 \"User account changed\" (level 8) and account creation 60109.": "Règle 60154 « Administrators Group Changed » (niveau 12). Les modifications de compte déclenchent aussi 60110 « User account changed » (niveau 8) et la création de compte 60109.",
+ "Hand over the 60204 alert. If it did not fire, hand over the last 60122 alert.": "Transmettez l’alerte 60204. Si elle ne s’est pas déclenchée, transmettez la dernière alerte 60122.",
+ "Hand over the 60106 alert for soc.test, not the many SYSTEM logons around it.": "Transmettez l’alerte 60106 de soc.test, pas les nombreuses connexions SYSTEM autour.",
+ "Hand over the 60154 alert.": "Transmettez l’alerte 60154.",
+ "Paste the alert JSON here.\nThreat Hunting → expand the alert → JSON tab → copy everything.\n\nEmpty box = lab sample in use.": "Collez ici le JSON de l’alerte.\nThreat Hunting → déplier l’alerte → onglet JSON → tout copier.\n\nZone vide = échantillon de labo utilisé.",
+ "Lab sample in use. Paste the real alert to replace it.": "Échantillon de labo utilisé. Collez l’alerte réelle pour le remplacer.",
+ " This is a real alert exported from the lab VM.": " C’est une alerte réelle exportée de la VM du labo.",
+ "Alert ID": "ID de l’alerte",
+ "Rule": "Règle",
+ "Level": "Niveau",
+ "Windows event": "Événement Windows",
+ "Alert time": "Heure de l’alerte",
+ "Detect time": "Délai de détection",
+ "Why it fired (for Team 3)": "Pourquoi elle s’est déclenchée (pour l’équipe 3)",
+ "Screenshot: the alert in the Threat Hunting event list": "Capture : l’alerte dans la liste d’événements de Threat Hunting",
+ "Screenshot: the expanded alert showing rule.id and data.win.system.eventID": "Capture : l’alerte dépliée montrant rule.id et data.win.system.eventID",
+ "Explanation checked against the alert": "Explication vérifiée par rapport à l’alerte",
+ "Send to Team 3": "Envoyer à l’équipe 3",
+ "Sent to Team 3 ✓": "Envoyé à l’équipe 3 ✓",
+ "Open in AI analysis": "Ouvrir dans l’analyse IA",
+ "Handoff to Team 3: alert IDs, raw evidence and severity": "Transmission à l’équipe 3 : ID d’alertes, preuves brutes et gravité",
+ "Incident": "Incident",
+ "Scenario": "Scénario",
+ "Event": "Événement",
+ "Alert time (UTC)": "Heure de l’alerte (UTC)",
+ "No alert captured.": "Aucune alerte capturée.",
+ "Optional: rule that flags a success after failed logons (Team 1 only)": "Optionnel : règle qui signale une réussite après des échecs (équipe 1 uniquement)",
+ "Wazuh rates scenario 2 as level 3 on its own. This local rule raises it to level 10 when the same account failed first. Only Team 1 should add it, and only after the syntax check passes.": "Wazuh classe seul le scénario 2 au niveau 3. Cette règle locale le monte au niveau 10 quand le même compte a d’abord échoué. Seule l’équipe 1 doit l’ajouter, et seulement après réussite du contrôle de syntaxe.",
+ "Clean-up after the demo": "Nettoyage après la démo",
+ "Paste the alert JSON that Team 2 sent.": "Collez le JSON d’alerte envoyé par l’équipe 2.",
+ "That paste is over 200,000 characters. Paste one alert at a time.": "Ce collage dépasse 200 000 caractères. Collez une alerte à la fois.",
+ "This isn’t valid JSON. In the Wazuh dashboard, open the alert, switch to the JSON tab and copy the whole object.": "Ce n’est pas un JSON valide. Dans Wazuh, ouvrez l’alerte, passez sur l’onglet JSON et copiez tout l’objet.",
+ "Paste one alert object, starting with { and ending with }.": "Collez un seul objet d’alerte, qui commence par { et finit par }.",
+ "This JSON has no \"rule\" section, so it isn’t a Wazuh alert. Check you copied the alert, not the query.": "Ce JSON n’a pas de section « rule » : ce n’est pas une alerte Wazuh. Vérifiez que vous avez copié l’alerte et non la requête.",
+ "This alert can’t be read.": "Cette alerte est illisible.",
+ "Team 3 · AI Analysis": "Équipe 3 · Analyse IA",
+ "AI analysis of the 3 alerts": "Analyse IA des 3 alertes",
+ "For each alert: how serious it is, what may explain it, what to do, and every AI claim checked against the log.": "Pour chaque alerte : sa gravité, ses explications possibles, quoi faire, et chaque affirmation de l’IA vérifiée dans le journal.",
+ "Open full workbench": "Ouvrir l’atelier complet",
+ "Run the AI here…": "Lancer l’IA ici…",
+ "Run AI analysis": "Lancer l’analyse IA",
+ "Running…": "En cours…",
+ "Stop": "Arrêter",
+ "No AI analysis yet.": "Pas encore d’analyse IA.",
+ "AI severity": "Gravité IA",
+ "Wazuh says": "Wazuh dit",
+ "→ AI says": "→ l’IA dit",
+ "Possible explanations": "Explications possibles",
+ "Recommended response": "Réponse recommandée",
+ "What we still don’t know": "Ce que nous ignorons encore",
+ "Matches the log": "Conforme au journal",
+ "Field found in the log": "Champ présent dans le journal",
+ "Log disagrees": "Le journal contredit",
+ "Not in the log": "Absent du journal",
+ "AI opinion": "Avis de l’IA",
+ "AI opinion — needs a human to judge": "Avis de l’IA — à juger par un humain",
+ "No valid alert loaded. Open the full workbench and paste Team 2’s alert.": "Aucune alerte valide. Ouvrez l’atelier complet et collez l’alerte de l’équipe 2.",
+ "Alerts from Team 2": "Alertes de l’équipe 2",
+ "No valid alert yet": "Pas encore d’alerte valide",
+ "Replace each lab sample with the alert JSON Team 2 sends you. Your work is saved in this browser.": "Remplacez chaque échantillon par le JSON d’alerte envoyé par l’équipe 2. Votre travail est enregistré dans ce navigateur.",
+ "Working on a lab sample. Paste Team 2’s alert in Intake to replace it.": "Travail sur un échantillon. Collez l’alerte de l’équipe 2 dans Réception pour le remplacer.",
+ "Working on Team 2’s alert.": "Travail sur l’alerte de l’équipe 2.",
+ "Intake": "Réception",
+ "Redact": "Masquer",
+ "Ask AI": "Demander à l’IA",
+ "Verify": "Vérifier",
+ "Alert from Team 2": "Alerte de l’équipe 2",
+ "Team 2 hands over alert IDs, raw evidence and severity. Paste the full Wazuh alert JSON. A dashboard document with _source works too.": "L’équipe 2 transmet les ID d’alerte, les preuves brutes et la gravité. Collez le JSON complet de l’alerte Wazuh. Un document du tableau de bord avec _source fonctionne aussi.",
+ "Alert JSON": "JSON de l’alerte",
+ "Load lab sample": "Charger un échantillon",
+ "Load real lab alert": "Charger l’alerte réelle",
+ "Clear": "Effacer",
+ "What Team 3 received": "Ce que l’équipe 3 a reçu",
+ "Time": "Heure",
+ "Wazuh level": "Niveau Wazuh",
+ "Host": "Hôte",
+ "Source IP": "IP source",
+ "Account": "Compte",
+ "Account added": "Compte ajouté",
+ "Group": "Groupe",
+ "Changed by": "Modifié par",
+ "Logon type": "Type de connexion",
+ "File": "Fichier",
+ "ATT&CK (rule)": "ATT&CK (règle)",
+ "Team 2’s explanation": "Explication de l’équipe 2",
+ "Team 2’s explanation of why the rule fired.": "Explication de l’équipe 2 sur le déclenchement de la règle.",
+ "Kept with the case. It is not sent to the AI.": "Conservée avec le dossier. Elle n’est pas envoyée à l’IA.",
+ "This view still shows real names and IPs. Nothing leaves the page until step 3, and only in redacted form.": "Cette vue montre encore les vrais noms et IP. Rien ne quitte la page avant l’étape 3, et seulement sous forme masquée.",
+ "Next: redact": "Suivant : masquer",
+ "Next: ask AI": "Suivant : demander à l’IA",
+ "Next: verify claims": "Suivant : vérifier les affirmations",
+ "Next: incident summary": "Suivant : synthèse d’incident",
+ "Add a valid alert in Intake first.": "Ajoutez d’abord une alerte valide dans Réception.",
+ "Remove personal and confidential data": "Supprimer les données personnelles et confidentielles",
+ "Accounts, account SIDs, host names, IPs and emails become tokens before anything goes to an AI. The same value gets the same token in all three incidents, so links between alerts survive. Built-in names such as Administrators and SYSTEM, well-known SIDs, rule IDs, event IDs and timestamps stay visible because the AI needs them.": "Les comptes, SID de comptes, noms d’hôtes, IP et e-mails deviennent des jetons avant tout envoi à une IA. Une même valeur reçoit le même jeton dans les trois incidents, donc les liens entre alertes sont conservés. Les noms intégrés comme Administrators et SYSTEM, les SID connus, les ID de règles, les ID d’événements et les horodatages restent visibles car l’IA en a besoin.",
+ "Original": "Original",
+ "Type": "Type",
+ "Token": "Jeton",
+ "Hits": "Occurrences",
+ "Left visible": "Laissé visible",
+ "Host name": "Nom d’hôte",
+ "IP address": "Adresse IP",
+ "Email": "E-mail",
+ "Account SID": "SID du compte",
+ "Your term": "Votre terme",
+ "No personal or confidential values found.": "Aucune valeur personnelle ou confidentielle trouvée.",
+ "Extra names or terms to hide": "Autres noms ou termes à masquer",
+ "e.g. ESAIP, Project Orion, a teammate’s name": "ex. ESAIP, Projet Orion, le nom d’un coéquipier",
+ "Comma-separated. Applies when you leave the field.": "Séparés par des virgules. Appliqué quand vous quittez le champ.",
+ "This mapping is kept in the shared case file, visible only to people this console is shared with. It is never put in the prompt.": "Cette correspondance est conservée dans le dossier partagé, visible uniquement par les personnes avec qui la console est partagée. Elle n’est jamais mise dans le prompt.",
+ "This mapping stays in your browser. It is never put in the prompt.": "Cette correspondance reste dans votre navigateur. Elle n’est jamais mise dans le prompt.",
+ "Redacted alert — what the AI will see": "Alerte masquée — ce que l’IA verra",
+ "Leak check passed: no redacted value appears in this alert.": "Contrôle de fuite réussi : aucune valeur masquée n’apparaît dans cette alerte.",
+ "Mark redaction as checked": "Marquer le masquage comme vérifié",
+ "Redaction checked ✓": "Masquage vérifié ✓",
+ "Ask AI for severity, hypotheses and response options": "Demander à l’IA gravité, hypothèses et options de réponse",
+ "Redaction for this incident isn’t marked as checked yet. Review step 2 before sending anything.": "Le masquage de cet incident n’est pas encore marqué comme vérifié. Revoyez l’étape 2 avant d’envoyer quoi que ce soit.",
+ "Prompt (redacted) — this is the evidence of the AI prompt used": "Prompt (masqué) — preuve du prompt envoyé à l’IA",
+ "Include one-line summaries of the other incidents as context": "Inclure un résumé d’une ligne des autres incidents comme contexte",
+ "Or use another AI tool": "Ou utilisez un autre outil d’IA",
+ "Use any AI tool": "Utilisez n’importe quel outil d’IA",
+ "Click “Copy & open Claude” (or Copy prompt). The prompt contains only redacted values.": "Cliquez sur « Copier et ouvrir Claude » (ou Copier le prompt). Le prompt ne contient que des valeurs masquées.",
+ "In the new chat, paste with Ctrl+V and send it.": "Dans la nouvelle discussion, collez avec Ctrl+V et envoyez.",
+ "Paste the JSON answer below and choose Use this answer.": "Collez la réponse JSON ci-dessous et choisissez « Utiliser cette réponse ».",
+ "Paste the AI’s JSON answer here.": "Collez ici la réponse JSON de l’IA.",
+ "Use this answer": "Utiliser cette réponse",
+ "Copy & open Claude ↗": "Copier et ouvrir Claude ↗",
+ "Copy & open ChatGPT ↗": "Copier et ouvrir ChatGPT ↗",
+ "The answer has no claims or severity. Ask the AI to reply in the JSON shape from the prompt.": "La réponse n’a ni affirmations ni gravité. Demandez à l’IA de répondre au format JSON du prompt.",
+ "No JSON found. Paste only the AI’s JSON object, starting with {.": "Aucun JSON trouvé. Collez uniquement l’objet JSON de l’IA, qui commence par {.",
+ "Answer loaded. Now verify each claim against the log.": "Réponse chargée. Vérifiez maintenant chaque affirmation dans le journal.",
+ "Analysis received. Now verify each claim against the log.": "Analyse reçue. Vérifiez maintenant chaque affirmation dans le journal.",
+ "Thinking… this usually takes 20–60 seconds.": "Réflexion… cela prend en général 20 à 60 secondes.",
+ "The answer was missing severity or claims. Run again.": "La réponse n’avait ni gravité ni affirmations. Relancez.",
+ "Stopped.": "Arrêté.",
+ "Connection problem. Try again.": "Problème de connexion. Réessayez.",
+ "Claude isn’t available in this view. Copy the prompt and use another AI tool below.": "Claude n’est pas disponible dans cette vue. Copiez le prompt et utilisez un autre outil d’IA ci-dessous.",
+ "Too many requests right now. Wait a minute, then try again.": "Trop de requêtes en ce moment. Attendez une minute puis réessayez.",
+ "Claude declined this prompt. Check the redacted alert and try again.": "Claude a refusé ce prompt. Vérifiez l’alerte masquée et réessayez.",
+ "The answer wasn’t valid JSON. It is in the box below so you can fix it, or run again.": "La réponse n’était pas un JSON valide. Elle est dans la zone ci-dessous pour que vous la corrigiez, ou relancez.",
+ "Your Claude session expired. Sign in again, then retry.": "Votre session Claude a expiré. Reconnectez-vous puis réessayez.",
+ "The prompt is too large. Turn off the context from other incidents and retry.": "Le prompt est trop long. Désactivez le contexte des autres incidents et réessayez.",
+ "Claude returned nothing. Run again.": "Claude n’a rien renvoyé. Relancez.",
+ "The AI returned an empty answer. Run again.": "L’IA a renvoyé une réponse vide. Relancez.",
+ "Severity proposed": "Gravité proposée",
+ "Hypotheses": "Hypothèses",
+ "Response options": "Options de réponse",
+ "This is a prepared example answer for the lab sample, so you can see the flow. Run the prompt to replace it with a real one.": "Ceci est une réponse d’exemple préparée pour l’échantillon, pour montrer le déroulé. Lancez le prompt pour la remplacer par une vraie.",
+ "No analysis yet. Run the prompt to get one.": "Pas encore d’analyse. Lancez le prompt pour en obtenir une.",
+ "Get an AI analysis in step 3 first.": "Obtenez d’abord une analyse IA à l’étape 3.",
+ "Verify each claim against the log": "Vérifier chaque affirmation dans le journal",
+ "The page reads the field each claim cites and compares it with the alert. You make the call. Only claims you mark Verified reach Team 4.": "La page lit le champ cité par chaque affirmation et le compare à l’alerte. C’est vous qui décidez. Seules les affirmations marquées « Vérifiée » arrivent à l’équipe 4.",
+ "Severity check": "Contrôle de gravité",
+ "AI proposed": "Proposée par l’IA",
+ "Final (human)": "Finale (humaine)",
+ "AI agrees with the Wazuh level.": "L’IA est d’accord avec le niveau Wazuh.",
+ "AI agrees with the Wazuh level": "L’IA est d’accord avec le niveau Wazuh",
+ "No comparison.": "Pas de comparaison.",
+ "No comparison": "Pas de comparaison",
+ "Severity justification": "Justification de la gravité",
+ "Why this severity? e.g. \"Kept Medium: no evidence the login succeeded.\"": "Pourquoi cette gravité ? ex. « Gardée Moyenne : aucune preuve que la connexion a réussi. »",
+ "AI claims": "Affirmations de l’IA",
+ "Cited": "Cité",
+ "Log shows": "Le journal indique",
+ "no such field": "champ inexistant",
+ "✓ Log matches the cited value": "✓ Le journal confirme la valeur citée",
+ "✓ Field exists in the log": "✓ Le champ existe dans le journal",
+ "✕ Log disagrees with the claim": "✕ Le journal contredit l’affirmation",
+ "✕ Cited field is not in this alert": "✕ Le champ cité n’est pas dans cette alerte",
+ "? Inference — needs analyst judgment": "? Inférence — à juger par l’analyste",
+ "Log matches the cited value": "Le journal confirme la valeur citée",
+ "Field exists in the log": "Le champ existe dans le journal",
+ "Log disagrees with the claim": "Le journal contredit l’affirmation",
+ "Cited field is not in this alert": "Le champ cité n’est pas dans cette alerte",
+ "Inference — needs analyst judgment": "Inférence — à juger par l’analyste",
+ "Verified": "Vérifiée",
+ "Rejected": "Rejetée",
+ "Can’t tell": "Indéterminé",
+ "Note (what you checked)": "Note (ce que vous avez vérifié)",
+ "Actions to recommend to Team 4": "Actions à recommander à l’équipe 4",
+ "Verified by": "Vérifié par",
+ "Analyst note for Team 4": "Note de l’analyste pour l’équipe 4",
+ "Anything Team 4 must know, e.g. \"Same host as INC-02 — treat as one case.\"": "Ce que l’équipe 4 doit savoir, ex. « Même hôte que INC-02 — traiter comme un seul cas. »",
+ "Finish steps 1–4 first.": "Terminez d’abord les étapes 1 à 4.",
+ "One-page incident summary for Team 4": "Synthèse d’incident d’une page pour l’équipe 4",
+ "Mark as sent to Team 4": "Marquer comme envoyé à l’équipe 4",
+ "Sent to Team 4 ✓": "Envoyé à l’équipe 4 ✓",
+ "Ready to hand over.": "Prêt à transmettre.",
+ "final severity not set": "gravité finale non définie",
+ "some claims not reviewed": "des affirmations non vérifiées",
+ "no actions selected": "aucune action choisie",
+ "analyst not set": "analyste non défini",
+ "Incident summary · Team 3 → Team 4": "Synthèse d’incident · équipe 3 → équipe 4",
+ "not set": "non défini",
+ "Source": "Source",
+ "Severity": "Gravité",
+ "Verified findings": "Constats vérifiés",
+ "No claims verified yet.": "Aucune affirmation vérifiée pour l’instant.",
+ "AI claims rejected after checking the log": "Affirmations de l’IA rejetées après vérification du journal",
+ "— log shows ": "— le journal indique ",
+ "— analyst judgment": "— jugement de l’analyste",
+ "Open questions": "Questions ouvertes",
+ "Recommended actions for Team 4": "Actions recommandées pour l’équipe 4",
+ "No actions selected yet.": "Aucune action choisie pour l’instant.",
+ "Analyst note": "Note de l’analyste",
+ "Lab data only. USER_n, HOST_n and IP_n are redacted tokens. AI output was checked field by field against the Wazuh alert; hypotheses are not verified facts.": "Données de labo uniquement. USER_n, HOST_n et IP_n sont des jetons masqués. La sortie de l’IA a été vérifiée champ par champ dans l’alerte Wazuh ; les hypothèses ne sont pas des faits vérifiés.",
+ " Built from the prepared example answer, not a live AI run.": " Construite à partir de la réponse d’exemple préparée, pas d’une exécution réelle de l’IA.",
+ "Connect an AI to run the analysis on this page": "Connectez une IA pour lancer l’analyse sur cette page",
+ "Paste an Anthropic API key (console.anthropic.com → API keys). It goes only to api.anthropic.com, is never saved in this site’s code, and is forgotten when you close the tab unless you tick the box. API use is billed to your API account, separately from a Claude subscription.": "Collez une clé API Anthropic (console.anthropic.com → API keys). Elle est envoyée uniquement à api.anthropic.com, n’est jamais enregistrée dans le code du site et est oubliée à la fermeture de l’onglet, sauf si vous cochez la case. L’usage de l’API est facturé sur votre compte API, séparément d’un abonnement Claude.",
+ "API key": "Clé API",
+ "Anthropic API key": "Clé API Anthropic",
+ "Model": "Modèle",
+ "Keep the key until I close this tab": "Garder la clé jusqu’à la fermeture de cet onglet",
+ "Connect": "Connecter",
+ "Replace key": "Remplacer la clé",
+ "Forget key": "Oublier la clé",
+ "Not connected yet.": "Pas encore connecté.",
+ "Connected. The key is used only from this browser tab.": "Connecté. La clé n’est utilisée que depuis cet onglet.",
+ "Connected · paste a new key to replace it": "Connecté · collez une nouvelle clé pour la remplacer",
+ "That doesn’t look like an Anthropic API key. It starts with sk-ant-.": "Cela ne ressemble pas à une clé API Anthropic. Elle commence par sk-ant-.",
+ "Claude Sonnet 5.5 · balanced": "Claude Sonnet 5.5 · équilibré",
+ "Claude Haiku 5.5 · fastest, cheapest": "Claude Haiku 5.5 · le plus rapide et économique",
+ "Claude Opus 5.5 · most thorough": "Claude Opus 5.5 · le plus approfondi",
+ "Could not reach the Anthropic API. Check your internet connection and try again.": "Impossible de joindre l’API Anthropic. Vérifiez votre connexion internet et réessayez.",
+ "That API key was rejected. Check it at console.anthropic.com, then paste it again.": "Cette clé API a été refusée. Vérifiez-la sur console.anthropic.com puis collez-la à nouveau.",
+ "This API key is not allowed to use that model. Pick another model or check your key’s permissions.": "Cette clé API n’a pas accès à ce modèle. Choisissez un autre modèle ou vérifiez les autorisations de la clé.",
+ "That model is not available for this key. Pick another model.": "Ce modèle n’est pas disponible pour cette clé. Choisissez un autre modèle.",
+ "Your API account has no credit left. Add credit at console.anthropic.com, or use “Copy & open Claude”.": "Votre compte API n’a plus de crédit. Ajoutez-en sur console.anthropic.com, ou utilisez « Copier et ouvrir Claude ».",
+ "Too many requests for this key right now. Wait a minute, then try again.": "Trop de requêtes pour cette clé en ce moment. Attendez une minute puis réessayez.",
+ "The AI service is busy. Try again in a minute.": "Le service d’IA est saturé. Réessayez dans une minute.",
+ "Team 4 · Command Center": "Équipe 4 · Centre de commandement",
+ "Command Center": "Centre de commandement",
+ "A clear SOC overview and the response decisions. Real account names are shown here because Team 4 acts on real accounts; the AI only ever saw tokens.": "Une vue d’ensemble claire du SOC et les décisions de réponse. Les vrais noms de compte sont affichés ici car l’équipe 4 agit sur de vrais comptes ; l’IA n’a vu que des jetons.",
+ "SOC KPIs": "KPI du SOC",
+ "Live from this console. Screenshot this panel as the KPI evidence.": "En direct depuis cette console. Faites une capture de ce panneau comme preuve des KPI.",
+ "Detection coverage": "Couverture de détection",
+ "Scenarios with a Wazuh alert. Target 3/3.": "Scénarios avec une alerte Wazuh. Objectif 3/3.",
+ "Mean time to detect": "Délai moyen de détection",
+ "Windows event → Wazuh alert. Target under 5 min.": "Événement Windows → alerte Wazuh. Objectif moins de 5 min.",
+ "AI claim accuracy": "Exactitude des affirmations IA",
+ "Human verification": "Vérification humaine",
+ "Open high / critical": "Élevés / critiques ouverts",
+ "Incidents and decisions": "Incidents et décisions",
+ "Decision": "Décision",
+ "Owner": "Responsable",
+ "Action taken": "Action menée",
+ "e.g. Removed soc.test from Administrators": "ex. soc.test retiré des Administrators",
+ "Waiting for Team 3 summary": "En attente de la synthèse de l’équipe 3",
+ "Recommended by Team 3": "Recommandé par l’équipe 3",
+ "No findings verified by Team 3 yet.": "Aucun constat vérifié par l’équipe 3 pour l’instant.",
+ "Team 3 has not selected actions yet.": "L’équipe 3 n’a pas encore choisi d’actions.",
+ "No AI analysis for this alert yet.": "Pas encore d’analyse IA pour cette alerte.",
+ "Incident response playbook": "Playbook de réponse aux incidents",
+ "Response time by severity:": "Délai de réponse par gravité :",
+ "Triage": "Tri",
+ "Contain": "Contenir",
+ "Eradicate": "Éradiquer",
+ "Recover": "Rétablir",
+ "Lessons": "Leçons",
+ "Read the target account, logon type and source address in the alert.": "Lire dans l’alerte le compte ciblé, le type de connexion et l’adresse source.",
+ "Look for a 4624 success or a 4740 lockout for the same account right after.": "Chercher juste après une réussite 4624 ou un verrouillage 4740 du même compte.",
+ "If a success follows: disable the account.": "Si une réussite suit : désactiver le compte.",
+ "If the source is remote: block it at the host firewall.": "Si la source est distante : la bloquer au pare-feu de l’hôte.",
+ "Reset the account password.": "Réinitialiser le mot de passe du compte.",
+ "Re-enable the account once the owner confirms.": "Réactiver le compte une fois que le propriétaire confirme.",
+ "Lower the lockout threshold on lab endpoints.": "Abaisser le seuil de verrouillage sur les postes du labo.",
+ "Keep rule 60204 routed to Team 3.": "Continuer d’envoyer la règle 60204 à l’équipe 3.",
+ "Ask the account owner whether they made the logon.": "Demander au propriétaire du compte s’il s’est connecté.",
+ "Check logon type, source and whether the token was elevated.": "Vérifier le type de connexion, la source et si le jeton était élevé.",
+ "Log the session off (quser, then logoff <id>).": "Fermer la session (quser, puis logoff <id>).",
+ "Disable the account if the owner did not log on.": "Désactiver le compte si le propriétaire ne s’est pas connecté.",
+ "Reset credentials and review processes started by the account.": "Réinitialiser les identifiants et examiner les processus lancés par le compte.",
+ "Restore access with a new password.": "Rétablir l’accès avec un nouveau mot de passe.",
+ "Add a correlation rule for success after failures (rule 100110).": "Ajouter une règle de corrélation pour une réussite après des échecs (règle 100110).",
+ "Find who made the change (subjectUserName) and whether it was approved.": "Identifier l’auteur du changement (subjectUserName) et s’il était approuvé.",
+ "Confirm which account was added (memberSid).": "Confirmer quel compte a été ajouté (memberSid).",
+ "Remove the account from Administrators.": "Retirer le compte des Administrators.",
+ "Disable the added account.": "Désactiver le compte ajouté.",
+ "Review all account and group changes (4720, 4732, 4738) and new services or scheduled tasks.": "Examiner toutes les modifications de comptes et de groupes (4720, 4732, 4738) et les nouveaux services ou tâches planifiées.",
+ "Restore least privilege; keep admin membership to named admins only.": "Rétablir le moindre privilège ; réserver le groupe admin aux administrateurs nommés.",
+ "Require a ticket for admin group changes.": "Exiger un ticket pour toute modification du groupe admin.",
+ "Page Team 4 on every level 12+ alert.": "Alerter l’équipe 4 à chaque alerte de niveau 12 ou plus.",
+ "Two-minute executive briefing": "Briefing de direction de deux minutes",
+ "Written from verified findings and your decisions only. It updates as Team 3 verifies claims and you record decisions.": "Rédigé uniquement à partir des constats vérifiés et de vos décisions. Il se met à jour quand l’équipe 3 vérifie des affirmations et que vous enregistrez des décisions.",
+ "The three one-page incident summaries, with tokens as Team 3 wrote them.": "Les trois synthèses d’incident d’une page, avec les jetons tels que l’équipe 3 les a écrits.",
+ "To all teams: priorities and lessons learned": "À toutes les équipes : priorités et leçons apprises",
+ "Response priorities": "Priorités de réponse",
+ "Lessons learned": "Leçons apprises",
+ "Redaction worked: the AI saw tokens only, and the same token linked the account across all three incidents.": "Le masquage a fonctionné : l’IA n’a vu que des jetons, et le même jeton a relié le compte dans les trois incidents.",
+ "Share Wazuh access through individual accounts only. Any password posted in a chat should be changed after the exercise.": "Partagez l’accès à Wazuh uniquement par des comptes individuels. Tout mot de passe publié dans une discussion doit être changé après l’exercice.",
+ "Delete the soc.test account after the demo (Team 1).": "Supprimer le compte soc.test après la démo (équipe 1).",
+ "Wait for Team 3 analysis": "Attendre l’analyse de l’équipe 3",
+ "Final SOC demo · log → alert → AI-assisted analysis → SOC decision": "Démo finale du SOC · journal → alerte → analyse assistée par IA → décision SOC",
+ "Who": "Qui",
+ "Team 1": "Équipe 1",
+ "Team 3": "Équipe 3",
+ "Team 4": "Équipe 4",
+ "Wazuh → Endpoints: AI-SOC-WIN11 active. One line on the chain: Windows log → agent → manager → dashboard over Tailscale.": "Wazuh → Endpoints : AI-SOC-WIN11 actif. Une phrase sur la chaîne : journal Windows → agent → manager → tableau de bord via Tailscale.",
+ "Threat Hunting with the three queries: rules 60204, 60106, 60154 on AI-SOC-WIN11. Then the Detection tab handoff table.": "Threat Hunting avec les trois requêtes : règles 60204, 60106, 60154 sur AI-SOC-WIN11. Puis le tableau de transmission de l’onglet Détection.",
+ "AI analysis tab: redacted prompt, severity versus Wazuh, and one claim the log contradicted.": "Onglet Analyse IA : prompt masqué, gravité face à Wazuh, et une affirmation contredite par le journal.",
+ "Command Center: KPIs, attack timeline, decisions and the playbook.": "Centre de commandement : KPI, chronologie de l’attaque, décisions et playbook.",
+ "Read the executive briefing.": "Lire le briefing de direction.",
+ "Build the KPI views inside Wazuh too": "Construire aussi les vues KPI dans Wazuh",
+ "Threat Hunting → Events, run ": "Threat Hunting → Events, lancez ",
+ ", then save it as “SOC lab · scenario alerts”.": ", puis enregistrez-la sous « SOC lab · scenario alerts ».",
+ "Menu → Explore → Visualize → Create → Data table on wazuh-alerts-*. Split rows by Terms on rule.description, add the same query, save as “Alerts by rule”.": "Menu → Explore → Visualize → Create → Data table sur wazuh-alerts-*. Découpez les lignes par Terms sur rule.description, ajoutez la même requête, enregistrez sous « Alerts by rule ».",
+ "Create → Metric with the query rule.level >= 12, save as “High-severity alerts”.": "Create → Metric avec la requête rule.level >= 12, enregistrez sous « High-severity alerts ».",
+ "Menu → Explore → Dashboards → Create, add both views, save as “AI-SOC Command Center”, and screenshot it.": "Menu → Explore → Dashboards → Create, ajoutez les deux vues, enregistrez sous « AI-SOC Command Center » et faites une capture.",
+ "Menu names can differ slightly between Wazuh versions.": "Les noms de menus peuvent varier légèrement selon les versions de Wazuh.",
+ "AI accuracy on our incidents": "Exactitude de l’IA sur nos incidents",
+ "A KPI Team 4 can use: how many AI claims survived checking against the log.": "Un KPI pour l’équipe 4 : combien d’affirmations de l’IA ont résisté à la vérification dans le journal.",
+ "claims verified": "affirmations vérifiées",
+ "claims rejected": "affirmations rejetées",
+ "flagged by the field check": "signalées par le contrôle de champ",
+ "still to review": "restant à vérifier",
+ "How Team 3 works": "Comment travaille l’équipe 3",
+ "Collect": "Collecter",
+ " three alerts from Team 2: alert ID, raw evidence, Wazuh level.": " trois alertes de l’équipe 2 : ID d’alerte, preuves brutes, niveau Wazuh.",
+ " accounts, host names, IPs and emails into consistent tokens. A leak check confirms no original value remains.": " les comptes, noms d’hôtes, IP et e-mails en jetons cohérents. Un contrôle de fuite confirme qu’aucune valeur d’origine ne reste.",
+ " with a fixed prompt: severity, hypotheses, response options, and claims that each cite one alert field.": " avec un prompt fixe : gravité, hypothèses, options de réponse, et affirmations citant chacune un champ de l’alerte.",
+ " every claim. The page reads the cited field; an analyst marks it Verified, Rejected or Can’t tell. A human sets the final severity.": " chaque affirmation. La page lit le champ cité ; un analyste la marque Vérifiée, Rejetée ou Indéterminée. Un humain fixe la gravité finale.",
+ "Send": "Envoyer",
+ " a one-page summary to Team 4 with verified findings only, rejected AI claims shown struck through, and selected actions.": " une synthèse d’une page à l’équipe 4 avec uniquement les constats vérifiés, les affirmations IA rejetées barrées et les actions choisies.",
+ "AI prompts": "Prompts IA",
+ "One prompt design for all incidents. It forces the AI to tie each fact to a field, which is what makes checking possible, and to include the lab-test hypothesis.": "Un seul modèle de prompt pour tous les incidents. Il oblige l’IA à relier chaque fait à un champ, ce qui rend la vérification possible, et à envisager l’hypothèse d’un test de labo.",
+ "Automatic field check": "Contrôle automatique du champ",
+ "What the analyst does": "Ce que fait l’analyste",
+ "Usually Verified.": "En général Vérifiée.",
+ "Check the value yourself.": "Vérifiez la valeur vous-même.",
+ "Usually Rejected. Record what the log shows.": "En général Rejetée. Notez ce qu’indique le journal.",
+ "Rejected, or ask Team 2 for the field.": "Rejetée, ou demandez le champ à l’équipe 2.",
+ "Verified only if the analyst agrees; otherwise Can’t tell.": "Vérifiée seulement si l’analyste est d’accord ; sinon Indéterminé.",
+ "The field check is a helper, not a verdict. A matching field can still be read wrongly, as in INC-01, where Wazuh’s rule name says bad password but the sub-status says wrong PIN.": "Le contrôle de champ est une aide, pas un verdict. Un champ conforme peut encore être mal interprété, comme dans INC-01, où le nom de la règle Wazuh parle de mauvais mot de passe alors que le sous-statut indique un mauvais PIN.",
+ "Limitations": "Limites",
+ "The AI sees one redacted alert and short summaries of the others. It cannot query Wazuh, so it cannot know what happened before or after.": "L’IA voit une alerte masquée et de courts résumés des autres. Elle ne peut pas interroger Wazuh, donc elle ignore ce qui s’est passé avant ou après.",
+ "AI answers change between runs and can state wrong facts confidently. In the lab samples one claim per incident was false, and only checking the field exposed it. Even Wazuh can mislead: rule 60122 says \"bad password\" for what the sub-status shows was a wrong PIN.": "Les réponses de l’IA varient d’une exécution à l’autre et peuvent affirmer des faits faux avec assurance. Dans les échantillons, une affirmation par incident était fausse, et seule la vérification du champ l’a révélé. Même Wazuh peut induire en erreur : la règle 60122 parle de « mauvais mot de passe » alors que le sous-statut indique un mauvais PIN.",
+ "The field check compares text. It cannot tell whether a field means what the AI says it means; that needs a person.": "Le contrôle de champ compare du texte. Il ne peut pas savoir si un champ signifie ce que l’IA affirme ; il faut une personne pour cela.",
+ "Redaction is rule-based. Names inside free text that are not in known fields can slip through; add them under Extra terms and rely on the leak check.": "Le masquage repose sur des règles. Des noms dans du texte libre hors des champs connus peuvent passer ; ajoutez-les dans « Autres termes » et appuyez-vous sur le contrôle de fuite.",
+ "Tokens are pseudonyms, not anonymisation. Anyone this console is shared with can reverse them, so share it only with the class; the AI never receives the mapping.": "Les jetons sont des pseudonymes, pas une anonymisation. Toute personne avec qui la console est partagée peut les inverser : partagez-la uniquement avec la classe ; l’IA ne reçoit jamais la correspondance.",
+ "Severity from the AI is advisory. The final severity is set by a Team 3 analyst and can differ from both the AI and the Wazuh level.": "La gravité donnée par l’IA est indicative. La gravité finale est fixée par un analyste de l’équipe 3 et peut différer de celle de l’IA comme du niveau Wazuh.",
+ "Lab data only. The prompts, thresholds and redaction rules were not tested on production traffic.": "Données de labo uniquement. Les prompts, seuils et règles de masquage n’ont pas été testés sur du trafic de production.",
+ "Reset": "Réinitialiser",
+ "Reset the case file": "Réinitialiser le dossier",
+ "Click again to reset for everyone": "Cliquez encore pour réinitialiser pour tous",
+ "Restore the three real lab alerts with the prepared analyses. This clears every review and decision for everyone using this console.": "Restaurer les trois alertes réelles avec les analyses préparées. Cela efface toutes les vérifications et décisions pour tous les utilisateurs de cette console.",
+ "Restore the three real lab alerts with the prepared analyses. This clears your reviews in this browser.": "Restaurer les trois alertes réelles avec les analyses préparées. Cela efface vos vérifications dans ce navigateur.",
+ "One failed interactive logon at the machine's own sign-in screen, with no network source and no follow-up in this alert. That matches the Wazuh level 5.": "Un seul échec de connexion interactive sur l’écran de connexion de la machine, sans source réseau ni suite dans cette alerte. Cela correspond au niveau Wazuh 5.",
+ "Brute Force (only if more failures follow)": "Force brute (seulement si d’autres échecs suivent)",
+ "Team 1 typed a wrong PIN or password on purpose for their baseline test.": "L’équipe 1 a tapé exprès un mauvais PIN ou mot de passe pour son test de référence.",
+ "A user mistyped their Windows Hello PIN at the HOST_3 sign-in screen.": "Un utilisateur a mal tapé son PIN Windows Hello sur l’écran de connexion de HOST_3.",
+ "Someone with console access to HOST_3 tried to sign in.": "Une personne ayant accès à la console de HOST_3 a tenté de se connecter.",
+ "Wazuh rule 60122 fired: logon failure, unknown user or bad password.": "La règle Wazuh 60122 s’est déclenchée : échec de connexion, utilisateur inconnu ou mauvais mot de passe.",
+ "The underlying Windows event is 4625, a failed logon.": "L’événement Windows sous-jacent est 4625, un échec de connexion.",
+ "It was an interactive logon at the machine's own sign-in screen (logon type 2).": "C’était une connexion interactive sur l’écran de connexion de la machine (type de connexion 2).",
+ "The attempt came from the machine itself, not from the network.": "La tentative venait de la machine elle-même, pas du réseau.",
+ "Windows did not record which account was tried (null SID).": "Windows n’a pas enregistré quel compte a été tenté (SID nul).",
+ "The failure sub-status is 0xc0000380.": "Le sous-statut de l’échec est 0xc0000380.",
+ "Sub-status 0xc0000380 is the code Windows uses for a wrong PIN or smart-card credential, so this was most likely a wrong Windows Hello PIN, not a wrong password as the rule name suggests.": "Le sous-statut 0xc0000380 est le code Windows d’un mauvais PIN ou identifiant de carte à puce : il s’agissait donc très probablement d’un mauvais PIN Windows Hello, et non d’un mauvais mot de passe comme le suggère le nom de la règle.",
+ "A single failure is not an attack on its own; it matters only if more failures or a success follow.": "Un échec isolé n’est pas une attaque ; il ne compte que si d’autres échecs ou une réussite suivent.",
+ "Confirm with Team 1 that this was their test at 20:48 UTC on 8 November.": "Confirmer avec l’équipe 1 qu’il s’agissait de leur test à 20:48 UTC le 8 novembre.",
+ "Search HOST_3 for more 4625 events or a 4624 success around that time.": "Chercher sur HOST_3 d’autres événements 4625 ou une réussite 4624 à ce moment-là.",
+ "Close as a lab test once Team 1 confirms.": "Clore comme test de labo dès que l’équipe 1 confirme.",
+ "Compare the clocks of HOST_3 and HOST_2 to explain the 3.5-minute gap between event and alert.": "Comparer les horloges de HOST_3 et HOST_2 pour expliquer l’écart de 3,5 minutes entre l’événement et l’alerte.",
+ "Which account was tried.": "Quel compte a été tenté.",
+ "Whether the 3 min 29 s gap is ingestion delay or a clock difference between the Windows VM and the Wazuh server.": "Si l’écart de 3 min 29 s vient d’un délai d’ingestion ou d’une différence d’horloge entre la VM Windows et le serveur Wazuh.",
+ "This is the locked screen being unlocked (logon type 7) at the console, four seconds after one wrong PIN. That fits a corrected typo, not an attack. The session runs with an elevated admin token, which is worth noting but is not suspicious on its own.": "C’est le déverrouillage de l’écran verrouillé (type de connexion 7) sur la console, quatre secondes après un seul mauvais PIN. Cela correspond à une faute de frappe corrigée, pas à une attaque. La session dispose d’un jeton administrateur élevé, ce qui mérite d’être noté mais n’est pas suspect en soi.",
+ "Valid Accounts": "Comptes valides",
+ "The account owner mistyped the PIN on the lock screen and unlocked on the next try.": "Le propriétaire du compte a mal tapé le PIN sur l’écran de verrouillage puis a déverrouillé à l’essai suivant.",
+ "Team 1 unlocked the VM while preparing the baseline test.": "L’équipe 1 a déverrouillé la VM en préparant le test de référence.",
+ "Someone else who knows the PIN unlocked the console.": "Une autre personne connaissant le PIN a déverrouillé la console.",
+ "Wazuh rule 67022 fired: a local, non-network logon succeeded.": "La règle Wazuh 67022 s’est déclenchée : une connexion locale, hors réseau, a réussi.",
+ "The underlying Windows event is 4624, a successful logon.": "L’événement Windows sous-jacent est 4624, une connexion réussie.",
+ "Logon type 7 means the locked screen was unlocked; it is not a new sign-in and not a remote session.": "Le type de connexion 7 signifie que l’écran verrouillé a été déverrouillé ; ce n’est ni une nouvelle connexion ni une session à distance.",
+ "The account that unlocked is the Microsoft account USER_1.": "Le compte qui a déverrouillé est le compte Microsoft USER_1.",
+ "It is the same account that was changed in INC-03 (same SID).": "C’est le même compte que celui modifié dans INC-03 (même SID).",
+ "The session holds an elevated token (%%1842 means Yes), so the account is a local administrator.": "La session dispose d’un jeton élevé (%%1842 signifie Oui) : le compte est donc administrateur local.",
+ "Windows logged the unlock at 20:48:11 UTC, four seconds after the failed logon in INC-01.": "Windows a enregistré le déverrouillage à 20:48:11 UTC, quatre secondes après l’échec de connexion de INC-01.",
+ "Together with INC-01 this reads as a wrong PIN on the lock screen corrected four seconds later, not password guessing.": "Avec INC-01, cela se lit comme un mauvais PIN sur l’écran de verrouillage corrigé quatre secondes plus tard, pas comme une tentative de deviner le mot de passe.",
+ "A separate alert at 20:48:10 (rule 67028, event 4672) shows the same account received administrator privileges such as SeDebugPrivilege, so an admin account is used for everyday work.": "Une autre alerte à 20:48:10 (règle 67028, événement 4672) montre que le même compte a reçu des privilèges administrateur comme SeDebugPrivilege : un compte admin sert donc au travail quotidien.",
+ "Confirm with Team 1 that the owner of USER_1 unlocked the VM at 20:48 UTC.": "Confirmer avec l’équipe 1 que le propriétaire de USER_1 a déverrouillé la VM à 20:48 UTC.",
+ "Use a standard account for daily work on the lab VM and keep admin rights for a separate account.": "Utiliser un compte standard pour le travail quotidien sur la VM du labo et garder les droits admin pour un compte séparé.",
+ "Add a rule that alerts when a failed logon is followed within 60 seconds by an elevated logon for the same account.": "Ajouter une règle qui alerte quand un échec de connexion est suivi en moins de 60 secondes d’une connexion élevée du même compte.",
+ "Whether the person at the console was the account owner.": "Si la personne à la console était le propriétaire du compte.",
+ "What was done in the session after the unlock.": "Ce qui a été fait dans la session après le déverrouillage.",
+ "Wazuh rates every account change level 8 (Medium). Here the change was made by SYSTEM four seconds after a sign-in attempt, and the only attribute with a value is the display name: no password, group or account-control change. That looks like routine Windows behaviour at sign-in.": "Wazuh classe toute modification de compte au niveau 8 (Moyenne). Ici, la modification a été faite par SYSTEM quatre secondes après une tentative de connexion, et le seul attribut renseigné est le nom d’affichage : aucun changement de mot de passe, de groupe ou de contrôle du compte. Cela ressemble à un comportement normal de Windows à la connexion.",
+ "Account Manipulation (Wazuh mapping)": "Manipulation de compte (correspondance Wazuh)",
+ "Windows refreshed the display name of USER_2 automatically during sign-in.": "Windows a actualisé automatiquement le nom d’affichage de USER_2 pendant la connexion.",
+ "Team 1 set the display name to \"USER_3\" while preparing the lab VM.": "L’équipe 1 a défini le nom d’affichage « USER_3 » en préparant la VM du labo.",
+ "Someone tampered with the account USER_2.": "Quelqu’un a manipulé le compte USER_2.",
+ "Wazuh rule 60110 fired: user account changed.": "La règle Wazuh 60110 s’est déclenchée : compte utilisateur modifié.",
+ "The underlying Windows event is 4738, a user account was changed.": "L’événement Windows sous-jacent est 4738, un compte utilisateur a été modifié.",
+ "The account that was changed is USER_2.": "Le compte modifié est USER_2.",
+ "The change was made by the operating system itself (SYSTEM, S-1-5-18), not by a person.": "La modification a été faite par le système d’exploitation lui-même (SYSTEM, S-1-5-18), pas par une personne.",
+ "The attribute recorded in the event is the display name, now \"USER_3\".": "L’attribut enregistré dans l’événement est le nom d’affichage, désormais « USER_3 ».",
+ "Windows logged the change at 20:48:11 UTC, four seconds after the failed logon in INC-01.": "Windows a enregistré la modification à 20:48:11 UTC, quatre secondes après l’échec de connexion de INC-01.",
+ "Rule 60110 fired 4 times in this burst.": "La règle 60110 s’est déclenchée 4 fois dans cette rafale.",
+ "Every other attribute in the event message is \"-\", so no password, group membership or account-control setting changed.": "Tous les autres attributs du message valent « - » : aucun mot de passe, appartenance à un groupe ou paramètre de contrôle du compte n’a changé.",
+ "The alert arrived about 3 min 28 s after the event, the same gap as INC-01. A constant gap points to the Windows VM clock running behind the Wazuh server, not to a slow pipeline.": "L’alerte est arrivée environ 3 min 28 s après l’événement, le même écart que pour INC-01. Un écart constant indique que l’horloge de la VM Windows retarde sur le serveur Wazuh, pas un traitement lent.",
+ "Ask Team 1 whether \"USER_3\" is the expected display name for USER_2.": "Demander à l’équipe 1 si « USER_3 » est le nom d’affichage attendu pour USER_2.",
+ "Open the other three rule 60110 alerts from 21:51 and check none changed a password, group or account-control value.": "Ouvrir les trois autres alertes de la règle 60110 de 21:51 et vérifier qu’aucune n’a modifié un mot de passe, un groupe ou un paramètre de contrôle du compte.",
+ "Sync the Windows VM clock with the Wazuh server (time.windows.com or the host).": "Synchroniser l’horloge de la VM Windows avec le serveur Wazuh (time.windows.com ou l’hôte).",
+ "Lower account changes made by SYSTEM that touch only the display name to level 3, so level 8 means something.": "Abaisser au niveau 3 les modifications de compte faites par SYSTEM qui ne touchent que le nom d’affichage, pour que le niveau 8 garde son sens.",
+ "What the other three 4738 events in the burst changed.": "Ce qu’ont modifié les trois autres événements 4738 de la rafale.",
+ "Whether the display name was set by a person earlier.": "Si le nom d’affichage a été défini plus tôt par une personne.",
+ "Brute Force": "Force brute",
+ "Account Manipulation": "Manipulation de compte"
+};
+  var PATTERNS = [];
+
+  var SEV = '(Low|Medium|High|Critical|Unrated)';
+  function P(src, fn) { PATTERNS.push([new RegExp('^' + src + '$'), fn]); }
+  function num(s) { return String(s).replace('.', ','); }
+  // suffixes added around translated text
+  P('([\\s\\S]+) \\(not reviewed\\)', function (m, L) { return L(m[1]) + ' (non vérifiée)'; });
+  P('([\\s\\S]+) \\(cannot confirm from this alert\\)', function (m, L) { return L(m[1]) + ' (impossible à confirmer avec cette alerte)'; });
+  P('([\\s\\S]+) \\(AI suggestion, not yet selected\\)', function (m, L) { return L(m[1]) + ' (suggestion de l’IA, pas encore retenue)'; });
+  P('(\\d+ min(?: \\d+(?: s)?)?|\\d+ s|<1 s)', function (m) { return m[1]; });
+  P(SEV + ' · (AI|Wazuh|final|not confirmed|unconfirmed)', function (m, L) { return L(m[1]) + ' · ' + L(m[2]); });
+  P(SEV + ': (.+)', function (m, L) { return L(m[1]) + ' : ' + L(m[2]); });
+  P('Respond within (.+)', function (m, L) { return 'Répondre sous ' + L(m[1]); });
+  // counts and KPIs
+  P('(\\d+) of (\\d+) claims reviewed', function (m) { return m[1] + ' sur ' + m[2] + ' affirmations vérifiées'; });
+  P('(\\d+) confirmed, (\\d+) rejected by an analyst\\.', function (m) { return m[1] + ' confirmée(s), ' + m[2] + ' rejetée(s) par un analyste.'; });
+  P('(\\d+) of (\\d+) AI claims checked\\. Target 100%\\.', function (m) { return m[1] + ' sur ' + m[2] + ' affirmations de l’IA vérifiées. Objectif 100 %.'; });
+  P('(\\d+) of 3 incidents decided\\. Target 0\\.', function (m) { return m[1] + ' incident(s) sur 3 décidé(s). Objectif 0.'; });
+  P('(\\d+) words · about ([\\d.]+) min spoken', function (m) { return m[1] + ' mots · environ ' + num(m[2]) + ' min à l’oral'; });
+  P('(\\d+) \\(' + SEV + ' band\\)', function (m, L) { return m[1] + ' (tranche ' + L(m[2]) + ')'; });
+  P('(\\d+) AI claims? rejected after checking the log\\.', function (m) { return m[1] + ' affirmation(s) de l’IA rejetée(s) après vérification du journal.'; });
+  P('(\\d+) · level (\\d+)', function (m) { return m[1] + ' · niveau ' + m[2]; });
+  P('Same gap on every alert \\(±(\\d+) s\\): most likely the VM clock, not slow detection\\.', function (m) { return 'Même écart sur chaque alerte (±' + m[1] + ' s) : très probablement l’horloge de la VM, pas une détection lente.'; });
+  P('Every alert arrived (.+) after its event, within (\\d+) s of each other\\. A constant gap means the Windows VM clock is behind the Wazuh server; sync it before using detection time as a KPI\\.', function (m) {
+    return 'Chaque alerte est arrivée ' + m[1] + ' après son événement, à ' + m[2] + ' s près. Un écart constant signifie que l’horloge de la VM Windows retarde sur le serveur Wazuh ; synchronisez-la avant d’utiliser le délai de détection comme KPI.'; });
+  P('Detection took (.+) on average\\. Plan triage around that delay\\.', function (m) { return 'La détection a pris ' + m[1] + ' en moyenne. Organisez le tri en tenant compte de ce délai.'; });
+  P('The AI made (\\d+) claims? that the log contradicted\\. Keep the human check; never act on unverified AI output\\.', function (m) {
+    return 'L’IA a fait ' + m[1] + ' affirmation(s) contredite(s) par le journal. Gardez la vérification humaine ; n’agissez jamais sur une sortie d’IA non vérifiée.'; });
+  P('(INC-\\d+) \\((.+)\\): Wazuh alone rated it ' + SEV + '; in context it is ' + SEV + '\\. Correlate related alerts instead of reading them one by one\\.', function (m, L) {
+    return m[1] + ' (' + L(m[2].charAt(0).toUpperCase() + m[2].slice(1)).toLowerCase() + ') : Wazuh seul l’a classé ' + L(m[3]) + ' ; dans son contexte il est ' + L(m[4]) + '. Corrélez les alertes liées au lieu de les lire une par une.'; });
+  P('(INC-\\d+) · ' + SEV + ' · within ([^:]+): ([\\s\\S]+?)( \\(AI suggestion, not yet selected\\))?', function (m, L) {
+    return m[1] + ' · ' + L(m[2]) + ' · sous ' + L(m[3]) + ' : ' + L(m[4]) + (m[5] ? ' (suggestion de l’IA, pas encore retenue)' : ''); });
+  // headings and labels with ids
+  P('Claims checked against the log · (\\d+) match, (\\d+) wrong', function (m) { return 'Affirmations vérifiées dans le journal · ' + m[1] + ' conformes, ' + m[2] + ' fausses'; });
+  P('Claims to verify \\((\\d+)\\)', function (m) { return 'Affirmations à vérifier (' + m[1] + ')'; });
+  P('Claims verified (\\d+) of (\\d+)', function (m) { return 'Affirmations vérifiées : ' + m[1] + ' sur ' + m[2]; });
+  P('Decided (.+)', function (m) { return 'Décidé le ' + m[1]; });
+  P('Decision for claim (\\d+)', function (m) { return 'Décision pour l’affirmation ' + m[1]; });
+  P('Event (\\d+) · (.+)', function (m, L) { return 'Événement ' + m[1] + ' · ' + L(m[2]); });
+  P('Evidence: ([\\s\\S]+)', function (m) { return 'Preuve : ' + m[1]; });
+  P('Expected: ([\\s\\S]+)', function (m, L) { return 'Attendu : ' + L(m[1]); });
+  P('(INC-\\d+) · (no alert|lab sample|real ✓|captured ✓|check rule)( · sent)?', function (m, L) { return m[1] + ' · ' + L(m[2]) + (m[3] ? ' · envoyé' : ''); });
+  P('(INC-\\d+) — (.+)', function (m, L) { return m[1] + ' — ' + L(m[2]); });
+  P('(INC-\\d+) (Failed logins|Unusual access|Sensitive change)', function (m, L) { return m[1] + ' ' + L(m[2]); });
+  P('Rule (\\d+) matches this scenario\\.( This is a real alert exported from the lab VM\\.)?', function (m) {
+    return 'La règle ' + m[1] + ' correspond à ce scénario.' + (m[2] ? ' C’est une alerte réelle exportée de la VM du labo.' : ''); });
+  P('Rule (\\d+) is not the one expected here \\((.+)\\)\\. Check you copied the right alert\\.', function (m) {
+    return 'La règle ' + m[1] + ' n’est pas celle attendue ici (' + m[2].replace(/ or /g, ' ou ') + '). Vérifiez que vous avez copié la bonne alerte.'; });
+  P('Rule (\\d+) · level (\\d+) · (.+)', function (m) { return 'Règle ' + m[1] + ' · niveau ' + m[2] + ' · ' + m[3]; });
+  P('Rule (\\d+)', function (m) { return 'Règle ' + m[1]; });
+  P('Scenario (\\d+)( · INC-\\d+)?', function (m) { return 'Scénario ' + m[1] + (m[2] || ''); });
+  P('Team 3 summary received( .+)?', function (m) { return 'Synthèse de l’équipe 3 reçue' + (m[1] ? ' à' + m[1] : ''); });
+  P('Wazuh alert (\\S+) \\(\\+(.+)\\)', function (m) { return 'Alerte Wazuh ' + m[1] + ' (+' + m[2] + ')'; });
+  P('Wazuh band ' + SEV + ' · AI proposed ' + SEV, function (m, L) { return 'Tranche Wazuh ' + L(m[1]) + ' · proposée par l’IA ' + L(m[2]); });
+  P('Wazuh level (\\d+)', function (m) { return 'Niveau Wazuh ' + m[1]; });
+  P('Wazuh rule (\\d+) · level (\\d+) · (\\S+) · (\\S+) — (.+)', function (m) { return 'Règle Wazuh ' + m[1] + ' · niveau ' + m[2] + ' · ' + m[3] + ' · ' + m[4] + ' — ' + m[5]; });
+  P('\\+(.+) after (INC-\\d+)', function (m) { return '+' + m[1] + ' après ' + m[2]; });
+  P('Attack timeline · Windows event time, UTC · (.+) · spaced by order, real gaps on the line', function (m) {
+    var span = m[1] === 'all in the same second' ? 'tout dans la même seconde' : m[1].replace(' from first to last', ' du premier au dernier');
+    return 'Chronologie de l’attaque · heure Windows, UTC · ' + span + ' · espacée par ordre, écarts réels sur la ligne'; });
+  P('AI rates (\\d+) bands? (above|below) Wazuh — justify or (lower|raise)(\\.( AI reason: ([\\s\\S]+))?)?', function (m, L) {
+    return 'L’IA évalue ' + m[1] + ' tranche(s) ' + (m[2] === 'above' ? 'au-dessus' : 'en dessous') + ' de Wazuh — justifiez ou ' + (m[3] === 'lower' ? 'baissez' : 'montez') + (m[4] ? '.' + (m[6] ? ' Raison de l’IA : ' + L(m[6]) : '') : ''); });
+  P('Before sending: (.+)\\.', function (m, L) { return 'Avant l’envoi : ' + m[1].split(', ').map(L).join(', ') + '.'; });
+  P('Copy (.+)', function (m, L) { return 'Copier ' + L(m[1]).toLowerCase(); });
+  P('(.+) copied', function (m, L) { return L(m[1]) + ' copié'; });
+  P('Saved (.+)', function (m) { return 'Enregistré : ' + m[1]; });
+  P('Prompt for (INC-\\d+) — (.+)', function (m, L) { return 'Prompt pour ' + m[1] + ' — ' + L(m[2]); });
+  P('Incident summary (INC-\\d+)', function (m) { return 'Synthèse d’incident ' + m[1]; });
+  P('Analyst: (.+)', function (m, L) { return 'Analyste : ' + L(m[1]); });
+  P('Alert JSON for (INC-\\d+)', function (m) { return 'JSON de l’alerte pour ' + m[1]; });
+  P('Run with (.+)', function (m) { return 'Lancer avec ' + m[1]; });
+  P('(?:Run again|Re-run) with (.+)', function (m) { return 'Relancer avec ' + m[1]; });
+  P('Thinking with (.+)… this usually takes 20–60 seconds\\.', function (m) { return 'Réflexion avec ' + m[1] + '… cela prend en général 20 à 60 secondes.'; });
+  P('Analysis received from (.+)\\. Now verify each claim against the log\\.', function (m) { return 'Analyse reçue de ' + m[1] + '. Vérifiez maintenant chaque affirmation dans le journal.'; });
+  P('Writing the analysis… (\\d+) characters so far\\.', function (m) { return 'Rédaction de l’analyse… ' + m[1] + ' caractères pour l’instant.'; });
+  P('AI connected · (.+)', function (m) { return 'IA connectée · ' + m[1]; });
+  P('Leak check failed: (.+) still visible\\.', function (m) { return 'Échec du contrôle de fuite : ' + m[1] + ' encore visible(s).'; });
+  P('Left visible by choice: (.+)\\. Note why in the limitations\\.', function (m) { return 'Laissé visible volontairement : ' + m[1] + '. Expliquez pourquoi dans les limites.'; });
+  P('The request failed \\(HTTP (\\d+)\\)\\.', function (m) { return 'La requête a échoué (HTTP ' + m[1] + ').'; });
+  P('The API refused the request(?:: ([\\s\\S]+))?\\.?', function (m) { return 'L’API a refusé la requête' + (m[1] ? ' : ' + m[1] : '.'); });
+  P('ATT&CK (T\\d{4}(?:\\.\\d{3})?) (.+)', function (m, L) { return 'ATT&CK ' + m[1] + ' ' + L(m[2]); });
+  P('(T\\d{4}(?:\\.\\d{3})?) (.+)', function (m, L) { return m[1] + ' ' + L(m[2]); });
+  P('Claude · (\\d\\d:\\d\\d(?::\\d\\d)?)', function (m) { return 'Claude · ' + m[1]; });
+  P('Pasted AI answer · (.+)', function (m) { return 'Réponse IA collée · ' + m[1]; });
+
+  var api = { FR: FR, PATTERNS: PATTERNS };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.I18N = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
 <script>
 (function () {
   'use strict';
@@ -1806,11 +2683,13 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   var emptyReview = Core.emptyReview, emptyT2 = Core.emptyT2, emptyT4 = Core.emptyT4;
   var UI_STORE = 'soc-console-ui', LOCAL_STORE = 'soc-console-local-v5';
-  var UI_KEYS = ['view', 'current', 'step', 'includeContext'];
+  var UI_KEYS = ['view', 'current', 'step', 'includeContext', 'lang', 'theme'];
+  var HOST_THEME = document.documentElement.getAttribute('data-theme');   // the viewer's own explicit choice, if any
 
   function freshCase() { return Core.initialCase(LabData, DEFS); }
   function loadUi() {
-    var d = { view: 'detect', current: 0, step: 'intake', includeContext: true };
+    var d = { view: 'detect', current: 0, step: 'intake', includeContext: true,
+      lang: /^fr\b/i.test((navigator.language || '')) ? 'fr' : 'en', theme: 'auto' };
     try {
       var u = JSON.parse(localStorage.getItem(UI_STORE) || 'null');
       if (u && typeof u === 'object') {
@@ -1818,6 +2697,8 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
         if (u.current === 0 || u.current === 1 || u.current === 2) d.current = u.current;
         if (['intake', 'redact', 'analyse', 'verify', 'summary'].indexOf(u.step) >= 0) d.step = u.step;
         if (typeof u.includeContext === 'boolean') d.includeContext = u.includeContext;
+        if (u.lang === 'en' || u.lang === 'fr') d.lang = u.lang;
+        if (['auto', 'light', 'dark'].indexOf(u.theme) >= 0) d.theme = u.theme;
       }
     } catch (e) { /* storage unavailable */ }
     return d;
@@ -1831,6 +2712,11 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   }
 
   var state = loadUi();
+  function applyTheme() {
+    var t = state.theme === 'auto' ? HOST_THEME : state.theme;
+    if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme');
+  }
+  applyTheme();
   withCase(freshCase());          // placeholder until the shared case arrives (or for local mode)
 
   var sync = {
@@ -1912,7 +2798,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     sync.note = text; sync.noteKind = kind || 'info';
     renderSyncChip();
     var el = document.getElementById('sync-note');
-    if (el) { el.hidden = !text; el.textContent = text; el.className = 'msg ' + sync.noteKind; }
+    if (el) { el.hidden = !text; el.textContent = L(text); el.className = 'msg ' + sync.noteKind; }
   }
   function fieldFocused() {
     var a = document.activeElement;
@@ -2000,7 +2886,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     var el = document.getElementById('sync-chip');
     if (!el) return;
     var t = { connecting: 'Connecting…', shared: sync.canWrite ? 'Shared · live' : 'Shared · view only', empty: 'Shared · empty', local: 'This browser only' }[sync.mode];
-    el.textContent = t;
+    el.textContent = L(t); el.title = L(t);
     el.className = 'badge ' + (sync.mode === 'shared' && sync.canWrite ? 'live' : sync.mode === 'local' ? 'sample' : 'warn');
   }
 
@@ -2043,6 +2929,24 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     return { parsed: parsed, entities: r.entities, tokens: r.tokens, redacted: r.redacted };
   }
 
+  /* ---------- language: every visible string goes through L() ---------- */
+
+  var LANG = 'en';
+  var FR = I18N.FR, PATTERNS = I18N.PATTERNS;
+  function L(s) {
+    if (typeof s !== 'string' || !s) return s;
+    if (window.__collect) window.__collect.add(s);
+    if (LANG !== 'fr') return s;
+    if (Object.prototype.hasOwnProperty.call(FR, s)) return FR[s];
+    for (var i = 0; i < PATTERNS.length; i++) {
+      var m = PATTERNS[i][0].exec(s);
+      if (m) return PATTERNS[i][1](m, L);
+    }
+    if (window.__missing) window.__missing.add(s);
+    return s;
+  }
+  var TRANSLATED_ATTRS = { placeholder: 1, 'aria-label': 1, title: 1 };
+
   /* ---------- DOM helpers (text only, never innerHTML for data) ---------- */
 
   function h(tag, props) {
@@ -2051,12 +2955,12 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       var v = props[k];
       if (v == null || v === false) return;
       if (k === 'class') el.className = v;
-      else if (k === 'text') el.textContent = v;
+      else if (k === 'text') el.textContent = L(String(v));
       else if (k === 'value') el.value = v;
       else if (k === 'checked') el.checked = !!v;
       else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v);
       else if (k === 'style') el.setAttribute('style', v);
-      else el.setAttribute(k, v === true ? '' : v);
+      else el.setAttribute(k, v === true ? '' : (TRANSLATED_ATTRS[k] ? L(String(v)) : v));
     });
     for (var i = 2; i < arguments.length; i++) append(el, arguments[i]);
     return el;
@@ -2064,11 +2968,11 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   function append(el, kid) {
     if (kid == null || kid === false) return;
     if (Array.isArray(kid)) { kid.forEach(function (k) { append(el, k); }); return; }
-    el.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+    el.append(kid.nodeType ? kid : document.createTextNode(L(String(kid))));
   }
   function tokenized(text, tag) {
     var el = h(tag || 'span');
-    Core.tokenSegments(text).forEach(function (s) {
+    Core.tokenSegments(L(String(text))).forEach(function (s) {
       el.append(s.token ? h('span', { class: 'redact', text: s.t }) : document.createTextNode(s.t));
     });
     return el;
@@ -2135,7 +3039,18 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   /* ---------- render: shell ---------- */
 
+  function renderChrome() {
+    document.documentElement.lang = LANG;
+    document.querySelectorAll('[data-en]').forEach(function (el) { el.textContent = L(el.getAttribute('data-en')); });
+    document.querySelectorAll('[data-en-label]').forEach(function (el) { el.setAttribute('aria-label', L(el.getAttribute('data-en-label'))); });
+    document.querySelectorAll('[data-en-title]').forEach(function (el) { el.setAttribute('title', L(el.getAttribute('data-en-title'))); el.setAttribute('aria-label', L(el.getAttribute('data-en-title'))); });
+    document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === LANG)); });
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-set') === state.theme)); });
+    var active = document.querySelector('.tab[aria-selected="true"]');
+    if (active && active.scrollIntoView) { try { active.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (e) { /* older browsers */ } }
+  }
   function renderTabs() {
+    renderChrome();
     document.querySelectorAll('.tab').forEach(function (b) {
       var on = b.dataset.view === state.view || (state.view === 'desk' && b.dataset.view === 'ai');
       b.setAttribute('aria-selected', String(on));
@@ -2306,7 +3221,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       dl.append(h('dt', { text: r[0] }), h('dd', { class: r[0] === 'Rule' || r[0] === 'Wazuh level' ? '' : 'mono', text: r[1] }));
     });
     var note = h('textarea', {
-      id: 'note-' + inc.id, rows: '4', value: inc.t2.explanation || Core.explainAlert(p.alert), placeholder: 'Team 2’s explanation of why the rule fired.',
+      id: 'note-' + inc.id, rows: '4', value: inc.t2.explanation || Core.explainAlert(p.alert, LANG), placeholder: 'Team 2’s explanation of why the rule fired.',
       oninput: function () { inc.t2.explanation = note.value.slice(0, 2000); save(); }
     });
     side.append(
@@ -2384,7 +3299,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     if (state.includeContext) state.incidents.forEach(function (o, j) {
       if (j !== i && D.redacted[j]) ctx.push(Core.contextLine(o, D.redacted[j]));
     });
-    return Core.buildPrompt(inc, D.redacted[i], ctx);
+    return Core.buildPrompt(inc, D.redacted[i], ctx, LANG);
   }
   function setAnalysis(i, an, source) {
     var inc = state.incidents[i];
@@ -2480,7 +3395,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
         h('div', { class: 'row' },
           h('button', { class: 'btn primary', text: byok.key ? 'Replace key' : 'Connect', onclick: function () {
             var v = key.value.trim();
-            if (!Core.looksLikeKey(v)) { msg.textContent = 'That doesn’t look like an Anthropic API key. It starts with sk-ant-.'; msg.className = 'msg bad'; return; }
+            if (!Core.looksLikeKey(v)) { msg.textContent = L('That doesn’t look like an Anthropic API key. It starts with sk-ant-.'); msg.className = 'msg bad'; return; }
             byok.key = v; key.value = ''; saveKey(); toast('AI connected'); render();
           } }),
           byok.key ? h('button', { class: 'btn', text: 'Forget key', onclick: function () { byok.key = ''; saveKey(); toast('Key forgotten'); render(); } }) : null),
@@ -2492,7 +3407,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   function setStatus(text, kind) {
     ui.status = text; ui.statusKind = kind;
     var el = document.getElementById('ai-status');
-    if (el) { el.textContent = text; el.className = 'msg ' + kind; }
+    if (el) { el.textContent = L(text); el.className = 'msg ' + kind; }
   }
 
   function panelAnalyse(panel, i, D) {
@@ -2831,7 +3746,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       ['Windows event', k.eventId], ['Alert time', k.time], ['Detect time', lat == null ? '' : Core.fmtDuration(lat)]].forEach(function (r) {
       if (r[1]) dl.append(h('dt', { text: r[0] }), h('dd', { class: r[0] === 'Rule' ? '' : 'mono', text: r[1] }));
     });
-    var ex = h('textarea', { id: 'det-why-' + i, rows: '7', value: inc.t2.explanation || Core.explainAlert(p.alert),
+    var ex = h('textarea', { id: 'det-why-' + i, rows: '7', value: inc.t2.explanation || Core.explainAlert(p.alert, LANG),
       oninput: function () { inc.t2.explanation = ex.value.slice(0, 2000); save(); } });
     var checks = h('div', { class: 'checks-list' });
     [['shotList', 'Screenshot: the alert in the Threat Hunting event list'], ['shotDoc', 'Screenshot: the expanded alert showing rule.id and data.win.system.eventID'], ['explained', 'Explanation checked against the alert']].forEach(function (c) {
@@ -2891,7 +3806,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     });
   }
   function utc(ms) { return new Date(ms).toISOString().slice(11, 19); }
-  function realText(t, D) { return Core.detokenize(t, D.tokens); }
+  function realText(t, D) { return Core.detokenize(L(t), D.tokens); }   // translate first: keys hold tokens, not names
 
   function renderCommand(D) {
     var rows = buildRows(D), k = Core.computeKpis(rows, 3);
@@ -3034,7 +3949,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   function briefingNow() {
     var D = derive(), rows = buildRows(D);
-    return Core.briefing(rows, Core.computeKpis(rows, 3), D.tokens);
+    return Core.briefing(rows, Core.computeKpis(rows, 3), D.tokens, LANG, L);
   }
   function speechMeta(text) {
     var words = text.split(/\s+/).filter(Boolean).length;
@@ -3043,10 +3958,10 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   function refreshBriefing() {
     var el = document.getElementById('speech'), meta = document.getElementById('speech-meta');
     if (!el) return;
-    var t = briefingNow(); el.textContent = t; if (meta) meta.textContent = speechMeta(t);
+    var t = briefingNow(); el.textContent = t; if (meta) meta.textContent = L(speechMeta(t));
   }
   function briefingPanel(rows, k, D) {
-    var text = Core.briefing(rows, k, D.tokens);
+    var text = Core.briefing(rows, k, D.tokens, LANG, L);
     var t3 = rows.filter(function (r) { return r.summary; }).map(function (r) { return Core.summaryMarkdown(r.summary, nowStamp()); }).join('\n\n---\n\n');
     return h('section', { class: 'panel' },
       h('div', { class: 'row between' }, h('h3', { text: 'Two-minute executive briefing' }),
@@ -3305,6 +4220,13 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   document.querySelectorAll('.tab').forEach(function (b) {
     b.addEventListener('click', function () { switchView(b.dataset.view); });
+  });
+  LANG = state.lang;
+  document.querySelectorAll('[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { state.lang = LANG = b.getAttribute('data-lang'); saveUi(); render(); });
+  });
+  document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+    b.addEventListener('click', function () { state.theme = b.getAttribute('data-theme-set'); saveUi(); applyTheme(); renderChrome(); });
   });
   render();
 

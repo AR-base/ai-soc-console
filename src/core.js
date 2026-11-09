@@ -335,7 +335,7 @@
     unknowns: ['what the alert cannot tell us']
   };
 
-  function buildPrompt(inc, redacted, context) {
+  function buildPrompt(inc, redacted, context, lang) {
     var k = keyFields(redacted);
     var band = wazuhBand(k.level);
     var lines = [
@@ -352,6 +352,7 @@
       '6. List what the alert cannot tell us.',
       '7. Make 5 to 9 claims, mostly facts. Do not invent fields that are not in the JSON.'
     ];
+    if (lang === 'fr') lines.push('8. Write every text value in French. Keep the JSON keys and these values in English: Low, Medium, High, Critical, Now, Soon, Later, fact, inference.');
     if (context && context.length) {
       lines.push('', 'Other alerts from the same exercise (context only, do not cite them as fields):');
       context.forEach(function (c) { lines.push('- ' + c); });
@@ -481,8 +482,30 @@
   };
   var LOGON_TYPES = { '2': 'interactive', '3': 'network', '4': 'batch', '5': 'service', '7': 'unlock', '8': 'network cleartext', '9': 'new credentials', '10': 'remote interactive (RDP)', '11': 'cached interactive' };
 
+  var EVENT_NAMES_FR = {
+    '4624': 'une connexion réussie', '4625': 'un échec de connexion', '4634': 'une déconnexion', '4648': 'une connexion avec identifiants explicites',
+    '4672': 'des privilèges spéciaux attribués à une nouvelle session', '4720': 'la création d’un compte utilisateur', '4722': 'l’activation d’un compte utilisateur',
+    '4724': 'une tentative de réinitialisation de mot de passe', '4726': 'la suppression d’un compte utilisateur', '4728': 'un membre ajouté à un groupe global de sécurité',
+    '4732': 'un membre ajouté à un groupe local de sécurité', '4733': 'un membre retiré d’un groupe local', '4738': 'la modification d’un compte utilisateur',
+    '4740': 'le verrouillage d’un compte', '1102': 'l’effacement du journal d’audit'
+  };
+  var LOGON_TYPES_FR = { '2': 'interactive', '3': 'réseau', '4': 'batch', '5': 'service', '7': 'déverrouillage', '8': 'réseau en clair', '9': 'nouveaux identifiants', '10': 'interactive à distance (RDP)', '11': 'interactive en cache' };
+  function explainAlertFr(alert) {
+    var k = keyFields(alert);
+    var s = 'La règle Wazuh ' + k.ruleId + ' (« ' + k.description + ' », niveau ' + k.level + ') s’est déclenchée' + (k.agent ? ' sur l’agent ' + k.agent : '');
+    if (k.eventId) s += ' car le journal Sécurité de Windows a enregistré l’événement ' + k.eventId + (EVENT_NAMES_FR[k.eventId] ? ', ' + EVENT_NAMES_FR[k.eventId] : '');
+    s += k.group ? ' (compte ' + k.user + ' ajouté à ' + k.group + ' par ' + (k.actor || 'inconnu') + ')' : (k.user ? ' pour le compte ' + k.user : '');
+    if (k.logonType) s += ', type de connexion ' + k.logonType + (LOGON_TYPES_FR[k.logonType] ? ' (' + LOGON_TYPES_FR[k.logonType] + ')' : '');
+    var freq = num(getPath(alert, 'rule.frequency'));
+    if (freq) s += '. C’est une règle de corrélation : il lui faut ' + freq + ' événements correspondants dans sa fenêtre de temps';
+    var lat = detectSeconds(alert);
+    if (lat != null) s += '. Windows a enregistré l’événement à ' + k.eventTime.replace('T', ' ').slice(0, 19) + ' UTC ; Wazuh a levé l’alerte ' + fmtDuration(lat) + ' plus tard';
+    return s + '.';
+  }
+
   // Plain-language "why this alert fired" for Team 2's handoff.
-  function explainAlert(alert) {
+  function explainAlert(alert, lang) {
+    if (lang === 'fr') return explainAlertFr(alert);
     var k = keyFields(alert);
     var parts = ['Wazuh rule ' + k.ruleId + ' ("' + k.description + '", level ' + k.level + ') fired'];
     if (k.agent) parts.push('on agent ' + k.agent);
@@ -538,8 +561,42 @@
     };
   }
 
+  // French two-minute briefing. `tr` translates UI/analysis strings (tokens kept), then tokens become real names.
+  var SEV_FR = { Low: 'faible', Medium: 'moyenne', High: 'élevée', Critical: 'critique', unrated: 'non évaluée', unknown: 'inconnue' };
+  function briefingFr(rows, kpi, entities, tr) {
+    var L = [], host = '';
+    var T = function (x) { return detokenize(tr(x), entities).replace(/[.\s]+$/, ''); };
+    rows.some(function (r) { if (r.alert) { host = keyFields(r.alert).agent; } return !!host; });
+    L.push('Bonjour. Voici le briefing du centre de commandement de notre SOC Wazuh partagé.');
+    L.push('Wazuh a levé des alertes pour ' + kpi.coverage.value + ' de nos ' + kpi.coverage.total + ' scénarios sur le poste Windows ' + (host || 'du labo') +
+      (kpi.mttd.seconds != null ? ', en moyenne ' + fmtDuration(kpi.mttd.seconds) + ' après l’enregistrement par Windows' + (kpi.mttd.constant ? ', un écart si constant qu’il vient très probablement de l’horloge de la VM, pas d’une détection lente.' : '.') : '.'));
+    rows.forEach(function (r) {
+      if (!r.alert) return;
+      var s = r.summary;
+      if (!s) {
+        var kk = keyFields(r.alert);
+        L.push(r.id + ', ' + tr(String(r.scenario || '')).toLowerCase() + ' : règle Wazuh ' + kk.ruleId + ' au niveau ' + kk.level + ' (' + (SEV_FR[wazuhBand(kk.level)] || 'non évaluée') + '). L’analyse de l’équipe 3 est en attente.');
+        return;
+      }
+      var sev = s.finalSeverity || s.aiSeverity || 'unrated';
+      var first = s.verified[0] ? T(s.verified[0].text) : 'Aucun constat vérifié pour l’instant';
+      var st = r.decision && r.decision.status && r.decision.status !== 'Open' ? r.decision.status : '';
+      var dec = st ? ' Décision : ' + tr(st).toLowerCase() + (r.decision.note ? ', ' + detokenize(r.decision.note, entities).replace(/[.\s]+$/, '') : '') + '.' : ' Décision en attente.';
+      L.push(s.id + ', ' + tr(s.scenario).toLowerCase() + ' : gravité ' + (SEV_FR[sev] || sev) + ' (Wazuh seul disait ' + (SEV_FR[s.band || 'unknown'] || 'inconnue') + '). ' + first + '.' + dec);
+    });
+    var a = kpi.accuracy;
+    L.push('L’IA nous a aidés à trier plus vite, mais nous ne lui avons pas fait confiance aveuglément. Elle a fait ' + kpi.verification.made + ' affirmations ; nous en avons vérifié ' + kpi.verification.reviewed + ' dans le journal, confirmé ' + a.verified + ' et rejeté ' + a.rejected + '.');
+    var rejected = null;
+    rows.some(function (r) { if (r.summary && r.summary.rejected[0]) { rejected = r.summary.rejected[0]; } return !!rejected; });
+    if (rejected) L.push('Par exemple, l’IA a dit : « ' + T(rejected.text) + ' ». Le journal indiquait ' + (rejected.field ? rejected.field + ' = ' + detokenize(rejected.actual || 'rien', entities) : 'autre chose') + ' : cette affirmation n’a donc jamais servi à une décision.');
+    L.push(kpi.openHigh.value ? kpi.openHigh.value + ' incident(s) élevé(s) ou critique(s) reste(nt) ouvert(s).' : 'Aucun incident élevé ou critique ne reste ouvert.');
+    L.push('Nos priorités : contenir toute modification de droits administrateur en 15 minutes, ajouter une règle qui relie les échecs de connexion à une réussite ultérieure, et garder une vérification humaine sur chaque affirmation de l’IA.');
+    return L.join('\n\n');
+  }
+
   // Two-minute spoken briefing (~250 words) from verified material only.
-  function briefing(rows, kpi, entities) {
+  function briefing(rows, kpi, entities, lang, tr) {
+    if (lang === 'fr') return briefingFr(rows, kpi, entities, tr || function (x) { return x; });
     var L = [];
     var host = '';
     rows.some(function (r) { if (r.alert) { host = keyFields(r.alert).agent; } return !!host; });

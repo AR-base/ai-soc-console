@@ -3,11 +3,12 @@ import pathlib
 root = pathlib.Path(__file__).parent
 core = (root / 'src/core.js').read_text()
 data = (root / 'src/data.js').read_text()
+i18n = (root / 'src/i18n.js').read_text()
 app = (root / 'src/app.html').read_text()
-for name, js in (('core.js', core), ('data.js', data)):
+for name, js in (('core.js', core), ('data.js', data), ('i18n.js', i18n)):
     if '</script' in js.lower():
         raise SystemExit(name + ' must not contain </script')
-body = app.replace('/*@CORE*/', core).replace('/*@DATA*/', data)
+body = app.replace('/*@CORE*/', core).replace('/*@DATA*/', data).replace('/*@I18N*/', i18n)
 head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
         '<meta name="description" content="AI-powered SOC console: Wazuh alert detection handoff, redacted AI analysis verified against the log, and a command center with KPIs.">\n'

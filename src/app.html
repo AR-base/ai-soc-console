@@ -2,37 +2,46 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: analyst desk — incident queue on the left, five-step case workspace on the right; redaction bars are the signature mark. */
+/* Direction: Apple-style glass console — translucent header and cards over a quiet aurora, pill controls, SF-like type; redaction chips stay the signature mark. */
 :root {
-  --bg: #ECEFF2; --surface: #FFFFFF; --surface-2: #F5F7F9; --ink: #13202B; --ink-2: #4B5A67; --ink-3: #6B7985;
-  --line: #D3DAE0; --line-2: #E4E9ED;
-  --accent: #0A6F6A; --accent-weak: #DCEFEE; --on-accent: #FFFFFF;
-  --bar: #13202B; --on-bar: #F1F4F6;
-  --ok: #1D7445; --ok-weak: #E1F2E8; --warn: #955800; --warn-weak: #FBEFD9; --bad: #B0261E; --bad-weak: #FBE3E1; --info: #35598F; --info-weak: #E2EAF6;
-  --sev-low: #4E7A5B; --sev-medium: #A06E0C; --sev-high: #C2501A; --sev-critical: #A0142C;
-  --f-display: 'IBM Plex Sans Condensed', 'Arial Narrow', 'Helvetica Neue', sans-serif;
-  --f-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --f-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
-  --r: 6px;
+  --bg: #F5F5F7; --bg-glow-1: rgba(0, 113, 227, .10); --bg-glow-2: rgba(94, 92, 230, .08);
+  --surface: rgba(255, 255, 255, .78); --surface-solid: #FFFFFF; --surface-2: rgba(118, 118, 128, .10); --ink: #1D1D1F; --ink-2: #424245; --ink-3: #6E6E73;
+  --line: rgba(0, 0, 0, .09); --line-2: rgba(0, 0, 0, .05);
+  --accent: #0071E3; --accent-2: #5E5CE6; --accent-weak: rgba(0, 113, 227, .10); --on-accent: #FFFFFF;
+  --bar: #1D1D1F; --on-bar: #F5F5F7;
+  --ok: #1E7F38; --ok-weak: rgba(52, 199, 89, .14); --warn: #A35200; --warn-weak: rgba(255, 149, 0, .14); --bad: #C4161C; --bad-weak: rgba(255, 59, 48, .12); --info: #0060C0; --info-weak: rgba(0, 113, 227, .10);
+  --sev-low: #1E8E3E; --sev-medium: #C56A00; --sev-high: #D9480F; --sev-critical: #C4161C;
+  --shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 8px 28px rgba(0, 0, 0, .07);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .08), 0 0 0 .5px rgba(0, 0, 0, .06);
+  --f-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --f-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --f-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+  --r: 14px; --r-lg: 20px;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0D1318; --surface: #141C23; --surface-2: #19232C; --ink: #E3E9EE; --ink-2: #A3B1BC; --ink-3: #85939F;
-  --line: #2A3641; --line-2: #202B35;
-  --accent: #3DBAB2; --accent-weak: #123432; --on-accent: #04201E;
-  --bar: #E3E9EE; --on-bar: #0D1318;
-  --ok: #5DC48A; --ok-weak: #12301F; --warn: #E3A645; --warn-weak: #33260F; --bad: #F2766D; --bad-weak: #3A1715; --info: #8FB1E8; --info-weak: #17243A;
-  --sev-low: #7DB38C; --sev-medium: #E0A93B; --sev-high: #F07A45; --sev-critical: #F2607A;
+  --bg: #000000; --bg-glow-1: rgba(10, 132, 255, .22); --bg-glow-2: rgba(94, 92, 230, .16);
+  --surface: rgba(28, 28, 30, .72); --surface-solid: #1C1C1E; --surface-2: rgba(44, 44, 46, .78); --ink: #F5F5F7; --ink-2: #C7C7CC; --ink-3: #8E8E93;
+  --line: rgba(255, 255, 255, .10); --line-2: rgba(255, 255, 255, .06);
+  --accent: #0A84FF; --accent-2: #5E5CE6; --accent-weak: rgba(10, 132, 255, .18); --on-accent: #FFFFFF;
+  --bar: #F5F5F7; --on-bar: #000000;
+  --ok: #30D158; --ok-weak: rgba(48, 209, 88, .16); --warn: #FF9F0A; --warn-weak: rgba(255, 159, 10, .16); --bad: #FF453A; --bad-weak: rgba(255, 69, 58, .16); --info: #64D2FF; --info-weak: rgba(100, 210, 255, .14);
+  --sev-low: #30D158; --sev-medium: #FF9F0A; --sev-high: #FF6B3D; --sev-critical: #FF453A;
+  --shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 10px 30px rgba(0, 0, 0, .45);
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 1px 2px rgba(0, 0, 0, .5);
   color-scheme: dark;
 } }
 :root[data-theme="dark"] {
-  --bg: #0D1318; --surface: #141C23; --surface-2: #19232C; --ink: #E3E9EE; --ink-2: #A3B1BC; --ink-3: #85939F;
-  --line: #2A3641; --line-2: #202B35;
-  --accent: #3DBAB2; --accent-weak: #123432; --on-accent: #04201E;
-  --bar: #E3E9EE; --on-bar: #0D1318;
-  --ok: #5DC48A; --ok-weak: #12301F; --warn: #E3A645; --warn-weak: #33260F; --bad: #F2766D; --bad-weak: #3A1715; --info: #8FB1E8; --info-weak: #17243A;
-  --sev-low: #7DB38C; --sev-medium: #E0A93B; --sev-high: #F07A45; --sev-critical: #F2607A;
+  --bg: #000000; --bg-glow-1: rgba(10, 132, 255, .22); --bg-glow-2: rgba(94, 92, 230, .16);
+  --surface: rgba(28, 28, 30, .72); --surface-solid: #1C1C1E; --surface-2: rgba(44, 44, 46, .78); --ink: #F5F5F7; --ink-2: #C7C7CC; --ink-3: #8E8E93;
+  --line: rgba(255, 255, 255, .10); --line-2: rgba(255, 255, 255, .06);
+  --accent: #0A84FF; --accent-2: #5E5CE6; --accent-weak: rgba(10, 132, 255, .18); --on-accent: #FFFFFF;
+  --bar: #F5F5F7; --on-bar: #000000;
+  --ok: #30D158; --ok-weak: rgba(48, 209, 88, .16); --warn: #FF9F0A; --warn-weak: rgba(255, 159, 10, .16); --bad: #FF453A; --bad-weak: rgba(255, 69, 58, .16); --info: #64D2FF; --info-weak: rgba(100, 210, 255, .14);
+  --sev-low: #30D158; --sev-medium: #FF9F0A; --sev-high: #FF6B3D; --sev-critical: #FF453A;
+  --shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 10px 30px rgba(0, 0, 0, .45);
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 1px 2px rgba(0, 0, 0, .5);
   color-scheme: dark;
 }
 
@@ -315,25 +324,186 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 @media (prefers-reduced-motion: no-preference) {
   .btn, .qcard, .step { transition: border-color .15s, background-color .15s, filter .15s; }
 }
+
+/* ===================== Apple-style layer ===================== */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(1100px 560px at 8% -12%, var(--bg-glow-1), transparent 62%), radial-gradient(900px 520px at 100% -6%, var(--bg-glow-2), transparent 58%);
+  background-attachment: fixed; letter-spacing: -0.006em;
+}
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.022em; }
+.eyebrow { font-family: var(--f-body); font-size: 11.5px; font-weight: 600; letter-spacing: .06em; color: var(--ink-3); }
+code, .mono, pre, textarea.code { font-family: var(--f-mono); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+
+/* glass, with a solid fallback */
+.top, .panel, .ai-card, .inc, .kpi, .qcard, .toast { -webkit-backdrop-filter: saturate(180%) blur(22px); backdrop-filter: saturate(180%) blur(22px); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { :root { --surface: var(--surface-solid); } }
+@media (prefers-reduced-transparency: reduce) { :root { --surface: var(--surface-solid); } }
+
+/* header */
+body::before { background: var(--surface); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); }
+.top { background: var(--surface); border-bottom: 1px solid var(--line); }
+.nav { align-items: center; padding-block: 10px; gap: 10px 16px; }
+.brand { padding-bottom: 0; gap: 10px; flex-wrap: nowrap; }
+.brand b { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+.logo { width: 26px; height: 26px; border-radius: 8px; flex: 0 0 auto; position: relative;
+  background: conic-gradient(from 220deg, var(--accent), var(--accent-2), #64D2FF, var(--accent)); box-shadow: 0 4px 14px var(--accent-weak); }
+.logo::after { content: ""; position: absolute; inset: 6px 6px 8px; border-radius: 3px 3px 7px 7px; background: rgba(255, 255, 255, .92); }
+.prefs { display: flex; gap: 8px; margin-left: auto; }
+.tabs { order: 3; width: 100%; background: var(--surface-2); border-radius: 999px; padding: 3px; gap: 2px; }
+.tab { border: 0; border-radius: 999px; padding: 6px 14px; font-weight: 500; font-size: 14px; color: var(--ink-2); flex: 1 0 auto; justify-content: center; transition: background-color .2s, color .2s, box-shadow .2s; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--surface-solid); color: var(--ink); box-shadow: var(--shadow-sm); border: 0; }
+.tab .tn { border: 0; background: var(--accent-weak); color: var(--accent); border-radius: 6px; padding: 1px 6px; font-size: 10.5px; font-weight: 700; font-family: var(--f-body); }
+.tab[aria-selected="true"] .tn { background: var(--accent); color: var(--on-accent); }
+.segmented { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 3px; gap: 2px; }
+.segmented button { border: 0; background: none; border-radius: 999px; min-width: 34px; height: 28px; padding: 0 10px; font-size: 12.5px; font-weight: 600; color: var(--ink-2); cursor: pointer; display: inline-grid; place-items: center; transition: background-color .2s, color .2s; }
+.segmented button svg { width: 15px; height: 15px; display: block; }
+.segmented button[aria-pressed="true"] { background: var(--surface-solid); color: var(--ink); box-shadow: var(--shadow-sm); }
+@media (min-width: 1120px) {
+  .nav { flex-wrap: nowrap; }
+  .tabs { order: 0; width: auto; margin-inline: auto; }
+  .prefs { margin-left: 0; }
+  .queue { top: calc(env(safe-area-inset-top, 0px) + 74px); }
+}
+@media (max-width: 1119px) { .queue { top: calc(env(safe-area-inset-top, 0px) + 116px); } }
+
+/* surfaces */
+.panel, .ai-card, .inc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.panel { padding: 22px; }
+.sheet { border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--surface-solid); box-shadow: var(--shadow); }
+.box, .pb-col, .sevcell, .ai-why { background: var(--surface-2); border: 0; border-radius: var(--r); }
+.ai-card { border-top: 1px solid var(--line); }
+.ai-card::before, .scen::before, .inc::before { content: ""; position: absolute; pointer-events: none; }
+.ai-card::before { inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--sevc), transparent 75%); }
+.scen { border-top: 1px solid var(--line); }
+.scen::before { inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2) 40%, transparent 80%); }
+.inc { border-left: 1px solid var(--line); }
+.inc::before { inset: 0 auto 0 0; width: 3px; background: linear-gradient(180deg, var(--sevc), transparent); }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow-sm); transition: box-shadow .2s, border-color .2s, transform .15s; }
+.qcard:hover { transform: translateY(-1px); }
+.qcard::before { width: 4px; top: 12px; bottom: 12px; left: 6px; border-radius: 4px; }
+.qcard[aria-current="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak); }
+.claim, .ck, .opt { border-radius: var(--r); border-color: var(--line); background: var(--surface); }
+.claim { border-left-width: 3px; }
+.ck { border-color: var(--line-2); }
+.ck-conflict, .ck-missing { background: var(--bad-weak); }
+.table-wrap { border-radius: 12px; border-color: var(--line); background: var(--surface); }
+th { font-family: var(--f-body); font-weight: 600; font-size: 11px; letter-spacing: .05em; background: var(--surface-2); }
+td, th { border-bottom-color: var(--line-2); }
+details { border-radius: 12px; border-color: var(--line); background: var(--surface); }
+details > summary { border-radius: 12px; }
+
+/* type */
+.vhead h1, .ai-top h1 { font-size: clamp(30px, 4.6vw, 46px); letter-spacing: -0.035em; font-weight: 800; }
+.case-head h2 { letter-spacing: -0.03em; }
+.panel h3 { font-size: 20px; letter-spacing: -0.02em; }
+.objective, .lede { color: var(--ink-2); }
+
+/* controls */
+.btn { border: 0; border-radius: 999px; background: var(--surface-2); color: var(--ink); font-weight: 600; padding: 8px 16px; font-size: 14px; transition: transform .12s, background-color .15s, box-shadow .15s, filter .15s; }
+.btn:hover { background: var(--line); border-color: transparent; }
+.btn:active { transform: scale(.97); }
+.btn.primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 6px 18px var(--accent-weak); }
+.btn.primary:hover { background: var(--accent); filter: brightness(1.08); }
+.btn.dark { background: var(--ink); color: var(--bg); }
+.btn.dark:hover { background: var(--ink); filter: brightness(1.15); }
+.btn.small { padding: 5px 12px; font-size: 13px; }
+.code-wrap .copy { box-shadow: var(--shadow-sm); background: var(--surface-solid); }
+textarea, input[type="text"], input[type="password"], select { background: var(--surface-2); border: 1px solid transparent; border-radius: 10px; padding: 9px 12px; transition: border-color .15s, box-shadow .15s; }
+textarea:focus, input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-weak); }
+textarea.code, pre.json { border-radius: 12px; }
+pre.json { background: var(--surface-2); border: 0; }
+.steps { border: 0; border-radius: 999px; background: var(--surface-2); padding: 4px; gap: 2px; }
+.step { border: 0; border-radius: 999px; padding: 7px 14px; transition: background-color .2s, box-shadow .2s; }
+.step[aria-selected="true"] { background: var(--surface-solid); box-shadow: var(--shadow-sm); }
+.step .num { border-color: var(--line); }
+.step.done .num { background: var(--ok); border-color: var(--ok); color: #fff; }
+.seg { border: 0; border-radius: 999px; background: var(--surface-2); padding: 2px; gap: 2px; }
+.seg button { border: 0; border-radius: 999px; background: none; padding: 5px 12px; }
+.seg button[aria-pressed="true"].v { background: var(--ok); color: #fff; }
+.seg button[aria-pressed="true"].r { background: var(--bad); color: #fff; }
+.seg button[aria-pressed="true"].u { background: var(--ink-2); color: var(--bg); }
+.stepname .num { background: var(--accent); color: var(--on-accent); }
+
+/* badges, chips, messages */
+.badge { border: 0; border-radius: 999px; font-family: var(--f-body); font-size: 11px; font-weight: 600; letter-spacing: .02em; text-transform: none; padding: 3px 10px; background: var(--surface-2); color: var(--ink-2); }
+.badge.live { background: var(--ok-weak); color: var(--ok); }
+.badge.warn { background: var(--warn-weak); color: var(--warn); }
+.badge.sample { background: transparent; color: var(--ink-3); box-shadow: inset 0 0 0 1px var(--line); }
+.chip { border: 0; border-radius: 6px; font-family: var(--f-body); font-weight: 600; font-size: 11px; background: var(--surface-2); color: var(--ink-2); padding: 1px 7px; }
+.chip.fact { background: var(--info-weak); color: var(--info); }
+.chip.inference { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+.prio-Now { background: var(--bad-weak); color: var(--bad); }
+.prio-Soon { background: var(--warn-weak); color: var(--warn); }
+.msg { border-radius: 12px; padding: 10px 14px; }
+.redact { border-radius: 5px; padding: 0 .45em; }
+.sev::before { border-radius: 50%; width: 8px; height: 8px; box-shadow: 0 0 8px var(--c); }
+.ck .ic { box-shadow: 0 0 10px currentColor; border-width: 1.5px; }
+
+/* KPIs and timeline */
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); position: relative; overflow: hidden; padding: 14px 16px; box-shadow: var(--shadow-sm); }
+.kpi::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--kc), transparent); }
+.kpi { border-top: 1px solid var(--line); }
+.kpi b { font-size: 34px; letter-spacing: -0.035em; font-weight: 800; }
+.kpi-none { --kc: var(--ink-3); }
+.tl-dot { box-shadow: 0 0 0 3px var(--surface-solid), 0 0 14px var(--sevc); }
+.tl-gap { border: 0; background: var(--surface-2); }
+.speech { border-left-color: var(--accent); }
+.toast { border-radius: 999px; background: var(--ink); color: var(--bg); box-shadow: var(--shadow); padding: 9px 18px; }
+.overlay .box { border-radius: var(--r-lg); background: var(--surface-solid); }
+@media (prefers-reduced-motion: no-preference) { body { transition: background-color .3s; } }
+@media (prefers-reduced-motion: reduce) { .qcard:hover { transform: none; } .btn:active { transform: none; } }
+
+/* polish */
+.ai-block h4, .queue h2, .pb-phase { font-family: var(--f-body); font-weight: 600; letter-spacing: .05em; }
+.box textarea, .box input[type="text"], .box input[type="password"], .box select, .sevcell select, .ai-why textarea { background: var(--surface-solid); }
+.sync-dot { display: none; }
+@media (max-width: 560px) {
+  .kpi b { font-size: 26px; }
+  .nav { gap: 8px; }
+  .segmented button { min-width: 30px; height: 26px; padding: 0 8px; }
+  .brand b { font-size: 16px; }
+}
+@media (max-width: 560px) {
+  #sync-chip { font-size: 0; padding: 0; width: 10px; height: 10px; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+  .logo { width: 24px; height: 24px; }
+}
+@media (max-width: 370px) { .brand b { display: none; } }
 </style>
 
 <header class="top">
   <div class="wrap nav">
-    <div class="brand"><span class="redact" aria-hidden="true">SOC</span><b>AI-Powered SOC</b><span class="hint">Shared Wazuh · Windows lab · lab data only</span><span class="badge warn" id="sync-chip" role="status">Connecting…</span></div>
-    <nav class="tabs" role="tablist" aria-label="Teams">
-      <button class="tab" role="tab" id="tab-detect" data-view="detect"><span class="tn">T2</span>Detection</button>
-      <button class="tab" role="tab" id="tab-ai" data-view="ai"><span class="tn">T3</span>AI analysis</button>
-      <button class="tab" role="tab" id="tab-command" data-view="command"><span class="tn">T4</span>Command center</button>
-      <button class="tab" role="tab" id="tab-method" data-view="method">Method &amp; limits</button>
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <b>AI-Powered SOC</b>
+      <span class="badge warn" id="sync-chip" role="status">Connecting…</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Teams" data-en-label="Teams">
+      <button class="tab" role="tab" id="tab-detect" data-view="detect"><span class="tn">T2</span><span data-en="Detection">Detection</span></button>
+      <button class="tab" role="tab" id="tab-ai" data-view="ai"><span class="tn">T3</span><span data-en="AI analysis">AI analysis</span></button>
+      <button class="tab" role="tab" id="tab-command" data-view="command"><span class="tn">T4</span><span data-en="Command center">Command center</span></button>
+      <button class="tab" role="tab" id="tab-method" data-view="method"><span data-en="Method &amp; limits">Method &amp; limits</span></button>
     </nav>
+    <div class="prefs">
+      <div class="segmented" role="group" id="lang-seg" aria-label="Language" data-en-label="Language">
+        <button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+      <div class="segmented" role="group" id="theme-seg" aria-label="Theme" data-en-label="Theme">
+        <button type="button" data-theme-set="auto" aria-pressed="false" data-en-title="Auto" title="Auto"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg></button><button type="button" data-theme-set="light" aria-pressed="false" data-en-title="Light" title="Light"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9 13 13M3 13l1.1-1.1M11.9 4.1 13 3"/></g></svg></button><button type="button" data-theme-set="dark" aria-pressed="false" data-en-title="Dark" title="Dark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.6 10.2A6 6 0 0 1 5.8 2.4a6 6 0 1 0 7.8 7.8z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
   </div>
 </header>
 
 <main id="app" class="wrap"></main>
-<footer class="wrap site-foot">Built by Pinninti Sai Anish · ESAIP MSc Cybersecurity &amp; Data Science · class exercise “Build your AI-powered SOC”. Lab data only; personal details are replaced with placeholders. Work you do here stays in your browser.</footer>
+<footer class="wrap site-foot" data-en="Built by Pinninti Sai Anish · ESAIP MSc Cybersecurity &amp; Data Science · class exercise “Build your AI-powered SOC”. Lab data only; personal details are replaced with placeholders. Work you do here stays in your browser.">Built by Pinninti Sai Anish · ESAIP MSc Cybersecurity &amp; Data Science · class exercise “Build your AI-powered SOC”. Lab data only; personal details are replaced with placeholders. Work you do here stays in your browser.</footer>
 
 <script>/*@CORE*/</script>
 <script>/*@DATA*/</script>
+<script>/*@I18N*/</script>
 <script>
 (function () {
   'use strict';
@@ -363,11 +533,13 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   var emptyReview = Core.emptyReview, emptyT2 = Core.emptyT2, emptyT4 = Core.emptyT4;
   var UI_STORE = 'soc-console-ui', LOCAL_STORE = 'soc-console-local-v5';
-  var UI_KEYS = ['view', 'current', 'step', 'includeContext'];
+  var UI_KEYS = ['view', 'current', 'step', 'includeContext', 'lang', 'theme'];
+  var HOST_THEME = document.documentElement.getAttribute('data-theme');   // the viewer's own explicit choice, if any
 
   function freshCase() { return Core.initialCase(LabData, DEFS); }
   function loadUi() {
-    var d = { view: 'detect', current: 0, step: 'intake', includeContext: true };
+    var d = { view: 'detect', current: 0, step: 'intake', includeContext: true,
+      lang: /^fr\b/i.test((navigator.language || '')) ? 'fr' : 'en', theme: 'auto' };
     try {
       var u = JSON.parse(localStorage.getItem(UI_STORE) || 'null');
       if (u && typeof u === 'object') {
@@ -375,6 +547,8 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
         if (u.current === 0 || u.current === 1 || u.current === 2) d.current = u.current;
         if (['intake', 'redact', 'analyse', 'verify', 'summary'].indexOf(u.step) >= 0) d.step = u.step;
         if (typeof u.includeContext === 'boolean') d.includeContext = u.includeContext;
+        if (u.lang === 'en' || u.lang === 'fr') d.lang = u.lang;
+        if (['auto', 'light', 'dark'].indexOf(u.theme) >= 0) d.theme = u.theme;
       }
     } catch (e) { /* storage unavailable */ }
     return d;
@@ -388,6 +562,11 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   }
 
   var state = loadUi();
+  function applyTheme() {
+    var t = state.theme === 'auto' ? HOST_THEME : state.theme;
+    if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme');
+  }
+  applyTheme();
   withCase(freshCase());          // placeholder until the shared case arrives (or for local mode)
 
   var sync = {
@@ -469,7 +648,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     sync.note = text; sync.noteKind = kind || 'info';
     renderSyncChip();
     var el = document.getElementById('sync-note');
-    if (el) { el.hidden = !text; el.textContent = text; el.className = 'msg ' + sync.noteKind; }
+    if (el) { el.hidden = !text; el.textContent = L(text); el.className = 'msg ' + sync.noteKind; }
   }
   function fieldFocused() {
     var a = document.activeElement;
@@ -557,7 +736,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     var el = document.getElementById('sync-chip');
     if (!el) return;
     var t = { connecting: 'Connecting…', shared: sync.canWrite ? 'Shared · live' : 'Shared · view only', empty: 'Shared · empty', local: 'This browser only' }[sync.mode];
-    el.textContent = t;
+    el.textContent = L(t); el.title = L(t);
     el.className = 'badge ' + (sync.mode === 'shared' && sync.canWrite ? 'live' : sync.mode === 'local' ? 'sample' : 'warn');
   }
 
@@ -600,6 +779,24 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     return { parsed: parsed, entities: r.entities, tokens: r.tokens, redacted: r.redacted };
   }
 
+  /* ---------- language: every visible string goes through L() ---------- */
+
+  var LANG = 'en';
+  var FR = I18N.FR, PATTERNS = I18N.PATTERNS;
+  function L(s) {
+    if (typeof s !== 'string' || !s) return s;
+    if (window.__collect) window.__collect.add(s);
+    if (LANG !== 'fr') return s;
+    if (Object.prototype.hasOwnProperty.call(FR, s)) return FR[s];
+    for (var i = 0; i < PATTERNS.length; i++) {
+      var m = PATTERNS[i][0].exec(s);
+      if (m) return PATTERNS[i][1](m, L);
+    }
+    if (window.__missing) window.__missing.add(s);
+    return s;
+  }
+  var TRANSLATED_ATTRS = { placeholder: 1, 'aria-label': 1, title: 1 };
+
   /* ---------- DOM helpers (text only, never innerHTML for data) ---------- */
 
   function h(tag, props) {
@@ -608,12 +805,12 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       var v = props[k];
       if (v == null || v === false) return;
       if (k === 'class') el.className = v;
-      else if (k === 'text') el.textContent = v;
+      else if (k === 'text') el.textContent = L(String(v));
       else if (k === 'value') el.value = v;
       else if (k === 'checked') el.checked = !!v;
       else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v);
       else if (k === 'style') el.setAttribute('style', v);
-      else el.setAttribute(k, v === true ? '' : v);
+      else el.setAttribute(k, v === true ? '' : (TRANSLATED_ATTRS[k] ? L(String(v)) : v));
     });
     for (var i = 2; i < arguments.length; i++) append(el, arguments[i]);
     return el;
@@ -621,11 +818,11 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   function append(el, kid) {
     if (kid == null || kid === false) return;
     if (Array.isArray(kid)) { kid.forEach(function (k) { append(el, k); }); return; }
-    el.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+    el.append(kid.nodeType ? kid : document.createTextNode(L(String(kid))));
   }
   function tokenized(text, tag) {
     var el = h(tag || 'span');
-    Core.tokenSegments(text).forEach(function (s) {
+    Core.tokenSegments(L(String(text))).forEach(function (s) {
       el.append(s.token ? h('span', { class: 'redact', text: s.t }) : document.createTextNode(s.t));
     });
     return el;
@@ -692,7 +889,18 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   /* ---------- render: shell ---------- */
 
+  function renderChrome() {
+    document.documentElement.lang = LANG;
+    document.querySelectorAll('[data-en]').forEach(function (el) { el.textContent = L(el.getAttribute('data-en')); });
+    document.querySelectorAll('[data-en-label]').forEach(function (el) { el.setAttribute('aria-label', L(el.getAttribute('data-en-label'))); });
+    document.querySelectorAll('[data-en-title]').forEach(function (el) { el.setAttribute('title', L(el.getAttribute('data-en-title'))); el.setAttribute('aria-label', L(el.getAttribute('data-en-title'))); });
+    document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === LANG)); });
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-set') === state.theme)); });
+    var active = document.querySelector('.tab[aria-selected="true"]');
+    if (active && active.scrollIntoView) { try { active.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (e) { /* older browsers */ } }
+  }
   function renderTabs() {
+    renderChrome();
     document.querySelectorAll('.tab').forEach(function (b) {
       var on = b.dataset.view === state.view || (state.view === 'desk' && b.dataset.view === 'ai');
       b.setAttribute('aria-selected', String(on));
@@ -863,7 +1071,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       dl.append(h('dt', { text: r[0] }), h('dd', { class: r[0] === 'Rule' || r[0] === 'Wazuh level' ? '' : 'mono', text: r[1] }));
     });
     var note = h('textarea', {
-      id: 'note-' + inc.id, rows: '4', value: inc.t2.explanation || Core.explainAlert(p.alert), placeholder: 'Team 2’s explanation of why the rule fired.',
+      id: 'note-' + inc.id, rows: '4', value: inc.t2.explanation || Core.explainAlert(p.alert, LANG), placeholder: 'Team 2’s explanation of why the rule fired.',
       oninput: function () { inc.t2.explanation = note.value.slice(0, 2000); save(); }
     });
     side.append(
@@ -941,7 +1149,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     if (state.includeContext) state.incidents.forEach(function (o, j) {
       if (j !== i && D.redacted[j]) ctx.push(Core.contextLine(o, D.redacted[j]));
     });
-    return Core.buildPrompt(inc, D.redacted[i], ctx);
+    return Core.buildPrompt(inc, D.redacted[i], ctx, LANG);
   }
   function setAnalysis(i, an, source) {
     var inc = state.incidents[i];
@@ -1037,7 +1245,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
         h('div', { class: 'row' },
           h('button', { class: 'btn primary', text: byok.key ? 'Replace key' : 'Connect', onclick: function () {
             var v = key.value.trim();
-            if (!Core.looksLikeKey(v)) { msg.textContent = 'That doesn’t look like an Anthropic API key. It starts with sk-ant-.'; msg.className = 'msg bad'; return; }
+            if (!Core.looksLikeKey(v)) { msg.textContent = L('That doesn’t look like an Anthropic API key. It starts with sk-ant-.'); msg.className = 'msg bad'; return; }
             byok.key = v; key.value = ''; saveKey(); toast('AI connected'); render();
           } }),
           byok.key ? h('button', { class: 'btn', text: 'Forget key', onclick: function () { byok.key = ''; saveKey(); toast('Key forgotten'); render(); } }) : null),
@@ -1049,7 +1257,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   function setStatus(text, kind) {
     ui.status = text; ui.statusKind = kind;
     var el = document.getElementById('ai-status');
-    if (el) { el.textContent = text; el.className = 'msg ' + kind; }
+    if (el) { el.textContent = L(text); el.className = 'msg ' + kind; }
   }
 
   function panelAnalyse(panel, i, D) {
@@ -1388,7 +1596,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
       ['Windows event', k.eventId], ['Alert time', k.time], ['Detect time', lat == null ? '' : Core.fmtDuration(lat)]].forEach(function (r) {
       if (r[1]) dl.append(h('dt', { text: r[0] }), h('dd', { class: r[0] === 'Rule' ? '' : 'mono', text: r[1] }));
     });
-    var ex = h('textarea', { id: 'det-why-' + i, rows: '7', value: inc.t2.explanation || Core.explainAlert(p.alert),
+    var ex = h('textarea', { id: 'det-why-' + i, rows: '7', value: inc.t2.explanation || Core.explainAlert(p.alert, LANG),
       oninput: function () { inc.t2.explanation = ex.value.slice(0, 2000); save(); } });
     var checks = h('div', { class: 'checks-list' });
     [['shotList', 'Screenshot: the alert in the Threat Hunting event list'], ['shotDoc', 'Screenshot: the expanded alert showing rule.id and data.win.system.eventID'], ['explained', 'Explanation checked against the alert']].forEach(function (c) {
@@ -1448,7 +1656,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
     });
   }
   function utc(ms) { return new Date(ms).toISOString().slice(11, 19); }
-  function realText(t, D) { return Core.detokenize(t, D.tokens); }
+  function realText(t, D) { return Core.detokenize(L(t), D.tokens); }   // translate first: keys hold tokens, not names
 
   function renderCommand(D) {
     var rows = buildRows(D), k = Core.computeKpis(rows, 3);
@@ -1591,7 +1799,7 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   function briefingNow() {
     var D = derive(), rows = buildRows(D);
-    return Core.briefing(rows, Core.computeKpis(rows, 3), D.tokens);
+    return Core.briefing(rows, Core.computeKpis(rows, 3), D.tokens, LANG, L);
   }
   function speechMeta(text) {
     var words = text.split(/\s+/).filter(Boolean).length;
@@ -1600,10 +1808,10 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
   function refreshBriefing() {
     var el = document.getElementById('speech'), meta = document.getElementById('speech-meta');
     if (!el) return;
-    var t = briefingNow(); el.textContent = t; if (meta) meta.textContent = speechMeta(t);
+    var t = briefingNow(); el.textContent = t; if (meta) meta.textContent = L(speechMeta(t));
   }
   function briefingPanel(rows, k, D) {
-    var text = Core.briefing(rows, k, D.tokens);
+    var text = Core.briefing(rows, k, D.tokens, LANG, L);
     var t3 = rows.filter(function (r) { return r.summary; }).map(function (r) { return Core.summaryMarkdown(r.summary, nowStamp()); }).join('\n\n---\n\n');
     return h('section', { class: 'panel' },
       h('div', { class: 'row between' }, h('h3', { text: 'Two-minute executive briefing' }),
@@ -1862,6 +2070,13 @@ details > div { padding: 0 12px 12px; display: grid; gap: 10px; }
 
   document.querySelectorAll('.tab').forEach(function (b) {
     b.addEventListener('click', function () { switchView(b.dataset.view); });
+  });
+  LANG = state.lang;
+  document.querySelectorAll('[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { state.lang = LANG = b.getAttribute('data-lang'); saveUi(); render(); });
+  });
+  document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+    b.addEventListener('click', function () { state.theme = b.getAttribute('data-theme-set'); saveUi(); applyTheme(); renderChrome(); });
   });
   render();
 
